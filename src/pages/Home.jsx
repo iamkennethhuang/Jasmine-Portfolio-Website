@@ -2,25 +2,18 @@ import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Di
 import { Link } from 'react-router-dom';
 import { ASSETS } from '../assets';
 
+// ─── design tokens ────────────────────────────────────────────────
+const serif = 'Cormorant Garamond, serif';
+const brown = '#40292c';
+const mauve = '#ae8f8e';
+const cream = '#f5ede8';
+
 // Decorative background repeater
-function CraftPaperBg() {
+function CraftPaperBg({ opacity = 1, flipY = false }) {
   return (
     <Box
-      component="img"
-      src={ASSETS.craftPaper}
-      alt=""
-      aria-hidden="true"
-      sx={{
-        position: 'absolute',
-        top: 0,
-        left: '-5%',
-        width: '110%',
-        height: '100%',
-        objectFit: 'cover',
-        opacity: 0.55,
-        pointerEvents: 'none',
-        zIndex: 0,
-      }}
+      component="img" src={ASSETS.craftPaper} alt="" aria-hidden="true"
+      sx={{ position: 'absolute', top: 0, left: '-5%', width: '110%', height: '100%', objectFit: 'cover', opacity, pointerEvents: 'none', zIndex: 0, transform: flipY ? 'scaleY(-1)' : 'none' }}
     />
   );
 }
@@ -203,7 +196,8 @@ export default function Home() {
       </Box>
 
       {/* ── WORK GRID ── */}
-      <Box id="work" sx={{ position: 'relative', py: { xs: 8, md: 12 }, px: { xs: 3, md: 8 }, backgroundColor: '#faf5f0' }}>
+      <Box id="work" sx={{ position: 'relative', py: { xs: 8, md: 12 }, px: { xs: 3, md: 8 } }}>
+        <CraftPaperBg flipY={false} />
         <Box component="img" src={ASSETS.craftPaper} alt="" aria-hidden="true"
           sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.3, pointerEvents: 'none' }}
         />
@@ -248,33 +242,42 @@ export default function Home() {
           </Grid>
         </Box>
       </Box>
-
-      {/* ── COFFEE CUP ── */}
-      <Box
-        sx={{
-          position: 'relative',
-          py: { xs: 6, md: 10 },
-          display: 'flex',
-          justifyContent: 'center',
-          overflow: 'hidden',
-          backgroundColor: '#f5ede8',
-        }}
-      >
-        <CraftPaperBg />
-        <Box
-          component="img"
-          src={ASSETS.coffeeCup}
-          alt="Coffee Cup Label Design"
-          sx={{
-            position: 'relative',
-            zIndex: 1,
-            width: { xs: '90%', md: '65%' },
-            maxWidth: 900,
-            borderRadius: 2,
-            boxShadow: '0 4px 30px rgba(64,41,44,0.12)',
-          }}
-        />
-      </Box>
+        
+    {/* ══ FOOTER ══ */}
+    <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 10 }}}>
+    <CraftPaperBg flipY={true} />
+    <Box sx={{
+        position: 'relative', zIndex: 1,
+        display: 'flex', flexDirection: { xs: 'column', sm: 'row' },
+        justifyContent: 'space-between', alignItems: 'flex-start',
+        gap: { xs: 4, sm: 0 }, px: { xs: 5, md: 8 }, py: { xs: 5, md: 6 },
+    }}>
+        <Box>
+        <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5, letterSpacing: '0.04em' }}>
+            PROJECT INQUIRIES
+        </Typography>
+        <Typography component="a" href="mailto:jasmineyjl@hotmail.com" sx={{
+            fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' },
+            color: brown, lineHeight: 1.5, display: 'block',
+            textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
+        }}>
+            jasmineyjl@hotmail.com
+        </Typography>
+        </Box>
+        <Box>
+        <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5, letterSpacing: '0.04em' }}>
+            SOCIAL
+        </Typography>
+        <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5 }}>
+            <Box component="a" href="https://www.instagram.com/whathebleep/" target="_blank" rel="noopener noreferrer" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+            Instagram
+            </Box>&emsp;&emsp;<Box component="a" href="https://www.linkedin.com/in/jasmine-lin-944454207/" target="_blank" rel="noopener noreferrer" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+            LinkedIn
+            </Box>
+        </Typography>
+        </Box>
+    </Box>
+    </Box>
     </Box>
   );
 }
