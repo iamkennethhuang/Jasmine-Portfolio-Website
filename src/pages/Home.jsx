@@ -25,13 +25,14 @@ function CraftPaperBg() {
   );
 }
 
-const workItems = [
-  { title: "L'Oréal Paris Campaign", subtitle: 'Brand Campaign Design', img: ASSETS.lorealInvitation, path: '/loreal-paris-campaign' },
-  { title: 'Vogue Cover Mockup',      subtitle: 'Editorial Design',       img: ASSETS.vogueCover,    path: '/work' },
-  { title: 'Stationery System',       subtitle: 'Brand Identity',          img: ASSETS.businessCard,  path: '/work' },
-  { title: '2-Page Layout',           subtitle: 'Publication Design',      img: ASSETS.twoPageLayout, path: '/work' },
-  { title: 'Whiskas Campaign',        subtitle: 'Advertising Design',      img: ASSETS.whiskas,       path: '/work' },
-  { title: 'Billboard Mockup',        subtitle: 'Outdoor Advertising',     img: ASSETS.billboard,     path: '/work' },
+export const workItems = [
+  { title: 'An Expression of Self',  subtitle: 'Brand Asset Design',     img: ASSETS.expressionOfSelfBanner, path: '/expression-of-self',      showInGrid: false },
+  { title: "L'Oréal Paris Campaign", subtitle: 'Brand Campaign Design', img: ASSETS.lorealInvitation,       path: '/loreal-paris-campaign',   showInGrid: true },
+  { title: 'Vogue Cover Mockup',      subtitle: 'Editorial Design',       img: ASSETS.vogueCover,             path: '/work',                    showInGrid: true },
+  { title: 'Stationery System',       subtitle: 'Brand Identity',          img: ASSETS.businessCard,           path: '/work',                    showInGrid: true },
+  { title: '2-Page Layout',           subtitle: 'Publication Design',      img: ASSETS.twoPageLayout,          path: '/work',                    showInGrid: true },
+  { title: 'Whiskas Campaign',        subtitle: 'Advertising Design',      img: ASSETS.whiskas,                path: '/work',                    showInGrid: true },
+  { title: 'Billboard Mockup',        subtitle: 'Outdoor Advertising',     img: ASSETS.billboard,              path: '/work',                    showInGrid: true },
 ];
 
 export default function Home() {
@@ -202,7 +203,7 @@ export default function Home() {
       </Box>
 
       {/* ── WORK GRID ── */}
-      <Box sx={{ position: 'relative', py: { xs: 8, md: 12 }, px: { xs: 3, md: 8 }, backgroundColor: '#faf5f0' }}>
+      <Box id="work" sx={{ position: 'relative', py: { xs: 8, md: 12 }, px: { xs: 3, md: 8 }, backgroundColor: '#faf5f0' }}>
         <Box component="img" src={ASSETS.craftPaper} alt="" aria-hidden="true"
           sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.3, pointerEvents: 'none' }}
         />
@@ -212,7 +213,7 @@ export default function Home() {
           </Typography>
           <Divider sx={{ width: 60, mx: 'auto', borderColor: '#ae8f8e', mb: 6, borderWidth: 1 }} />
           <Grid container spacing={3}>
-            {workItems.map((item) => (
+            {workItems.filter((item) => item.showInGrid).map((item) => (
               <Grid size={{ xs: 6, md: 4 }} key={item.title}>
                 <Card
                   elevation={0}

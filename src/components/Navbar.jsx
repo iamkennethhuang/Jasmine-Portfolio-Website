@@ -6,12 +6,12 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useLocation } from 'react-router-dom';
 import { ASSETS } from '../assets';
-import { projects } from '../pages/Work';
+import { workItems } from '../pages/Home';
 
 const navLinks = [
   { label: 'ABOUT',   path: '/about' },
   { label: 'RESUME',  path: '/resume' },
-  { label: 'WORK',    path: '/work' },
+  { label: 'WORK',    path: '/#work' },
   { label: 'CONTACT', path: '/contact' },
 ];
 
@@ -116,7 +116,7 @@ export default function Navbar() {
                         py: 1,
                       }}
                     >
-                      {projects.map((project) => (
+                      {workItems.map((project) => (
                         <Box
                           key={project.title}
                           component={Link}
@@ -205,7 +205,7 @@ export default function Navbar() {
                       />
                     </ListItemButton>
                   </ListItem>
-                  {link.label === 'WORK' && projects.map((project) => (
+                  {link.label === 'WORK' && workItems.map((project) => (
                     <ListItem key={project.title} disablePadding>
                       <ListItemButton
                         component={Link}

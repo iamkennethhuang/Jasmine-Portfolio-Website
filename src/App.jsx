@@ -5,8 +5,18 @@ import { Box } from '@mui/material';
 import { useEffect } from 'react';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      // Give the page a moment to render before scrolling to the element
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
   return null;
 }
 import theme from './theme';
@@ -14,7 +24,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
-import Work from './pages/Work';
 import AnExpressionOfSelf from './pages/AnExpressionOfSelf';
 import LorealParisCampaign from './pages/LorealParisCampaign';
 import Resume from './pages/Resume';
@@ -32,7 +41,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/work" element={<Work />} />
               <Route path="/expression-of-self" element={<AnExpressionOfSelf />} />
               <Route path="/loreal-paris-campaign" element={<LorealParisCampaign />} />
               <Route path="/resume" element={<Resume />} />
