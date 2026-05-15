@@ -285,14 +285,34 @@ export default function About() {
             }}>
               CONTACT
             </Typography>
-            {['jasmineyjl@hotmail.com', 'Instagram', 'LinkedIn'].map((item) => (
-              <Typography key={item} sx={{
-                fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
-                fontSize: { xs: '1.1rem', md: '1.5rem' },
-                color: '#40292c', lineHeight: 2,
-              }}>
-                {item}
-              </Typography>
+            <Typography component="a" href="mailto:jasmineyjl@hotmail.com" sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '1.1rem', md: '1.5rem' },
+              color: '#40292c', lineHeight: 2, display: 'block',
+              textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
+            }}>
+              jasmineyjl@hotmail.com
+            </Typography>
+            {['Instagram', 'LinkedIn'].map((item) => (
+              item === 'Instagram' ? (
+                <Typography key={item} component="a" href="https://www.instagram.com/whathebleep/" target="_blank" rel="noopener noreferrer" sx={{
+                  fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+                  fontSize: { xs: '1.1rem', md: '1.5rem' },
+                  color: '#40292c', lineHeight: 2, display: 'block',
+                  textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
+                }}>
+                  {item}
+                </Typography>
+              ) : (
+                <Typography key={item} component="a" href="https://www.linkedin.com/in/jasmine-lin-944454207/" target="_blank" rel="noopener noreferrer" sx={{
+                  fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+                  fontSize: { xs: '1.1rem', md: '1.5rem' },
+                  color: '#40292c', lineHeight: 2, display: 'block',
+                  textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
+                }}>
+                  {item}
+                </Typography>
+              )
             ))}
           </Box>
           </Box>
@@ -326,10 +346,11 @@ export default function About() {
             }}>
               PROJECT INQUIRIES
             </Typography>
-            <Typography sx={{
+            <Typography component="a" href="mailto:jasmineyjl@hotmail.com" sx={{
               fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
               fontSize: { xs: '1rem', md: '1.25rem' },
-              color: '#40292c', lineHeight: 1.5,
+              color: '#40292c', lineHeight: 1.5, display: 'block',
+              textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
             }}>
               jasmineyjl@hotmail.com
             </Typography>
@@ -348,7 +369,13 @@ export default function About() {
               fontSize: { xs: '1rem', md: '1.25rem' },
               color: '#40292c', lineHeight: 1.5,
             }}>
-              Instagram&emsp;&emsp;LinkedIn
+              <Box component="a" href="https://www.instagram.com/whathebleep/" target="_blank" rel="noopener noreferrer" sx={{
+                color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
+              }}>
+                Instagram
+              </Box>&emsp;&emsp;<Box component="a" href="https://www.linkedin.com/in/jasmine-lin-944454207/" target="_blank" rel="noopener noreferrer" sx={{
+                color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
+              }}>LinkedIn</Box>
             </Typography>
           </Box>
         </Box>
