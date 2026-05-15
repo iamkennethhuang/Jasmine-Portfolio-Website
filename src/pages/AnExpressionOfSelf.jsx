@@ -51,7 +51,7 @@ export default function AnExpressionOfSelf() {
     <Box component="main" sx={{ position: 'relative', overflowX: 'hidden' }}>
 
       {/* ══ HEADLINE ══ */}
-      <Box sx={{ position: 'relative', zIndex: 1, overflow: 'hidden', pt: { xs: 6, sm: 8, md: 12 }, pb: { xs: 5, md: 8 }, backgroundColor: cream }}>
+      <Box sx={{ position: 'relative', zIndex: 1, overflow: 'hidden', pt: { xs: 6, sm: 8, md: 12 }, pb: { xs: 5, md: 8 } }}>
         <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 4, sm: 6, md: 8, lg: '8.75%' } }}>
           <Typography sx={{
@@ -75,17 +75,18 @@ export default function AnExpressionOfSelf() {
 
       {/* ══ BANNER IMAGE ══ */}
       <Box sx={{ position: 'relative', width: '100%', height: { xs: 240, sm: 380, md: 560, lg: 700 }, overflow: 'hidden' }}>
-        {/* <CraftPaperBg flipY={true} /> */}
+        <CraftPaperBg opacity={1} flipY={true} />
         <Box component="img" src={ASSETS.expressionOverview} alt="An Expression of Self" sx={{
+          position: 'relative', zIndex: 1,
           width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block',
         }} />
       </Box>
 
       {/* ══ DESCRIPTION + HEADING ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 8, md: 10 }, pb: { xs: 2, md: 3 }, backgroundColor: cream }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 8, md: 10 }, pb: { xs: 2, md: 3 } }}>
         <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 4, md: 6 } }}>
-          <BodyText>
+          <BodyText sx={{ fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.85rem' }, fontWeight: 700, lineHeight: 1.3, mb: { xs: 2, md: 3 } }}>
             A personal branding project inspired by who I am, how I communicate, and the way I connect with
             people. I designed a custom logo and brand asset system that reflects my personality, values, and
             creative journey through thoughtful visual storytelling.
@@ -93,8 +94,8 @@ export default function AnExpressionOfSelf() {
         </Box>
       </Box>
 
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 4, md: 6 }, pb: { xs: 8, md: 12 }, backgroundColor: cream }}>
-        <CraftPaperBg />
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 4, md: 6 }, pb: { xs: 8, md: 12 } }}>
+        <CraftPaperBg flipY={true} />
         <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 4, sm: 6, md: 8, lg: '8.75%' } }}>
           <Typography sx={{
             fontFamily: serif, fontWeight: 700,
@@ -107,11 +108,11 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ BACKSTORY ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: cream }}>
-        <CraftPaperBg flipY={true} />
+      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 } }}>
+        <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 4, md: 6 } }}>
           <ItalicHeading sx={{ mb: { xs: 3, md: 4 } }}>Backstory</ItalicHeading>
-          <BodyText sx={{ mb: { xs: 5, md: 7 } }}>
+          <BodyText sx={{ mb: { xs: 5, md: 7 },  fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.85rem' }, fontWeight: 700, lineHeight: 1.1}}>
             My story begins in Taiwan, where my love for communication first started. From first grade through
             middle school, I participated in speech contests that were never just about reading a script, but about
             telling a story. To truly engage an audience, you had to express emotion through your voice, facial
@@ -133,11 +134,11 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ YOU FEEL IT ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: cream }}>
-        <CraftPaperBg />
+      <Box sx={{ position: 'relative', overflow: 'hidden',  }}>
+        <CraftPaperBg flipY={true}/>
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 4, md: 6 } }}>
           <BodyText sx={{ mb: { xs: 2, md: 3 }, fontSize: { xs: '1.3rem', md: '1.6rem', lg: '2rem' }, fontWeight: 700 }}>The answer I discovered was simple:</BodyText>
-          <ItalicHeading sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem', lg: '5.5rem' }, mb: { xs: 5, md: 7 } }}>
+          <ItalicHeading align="center" sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem', lg: '5.5rem' }, py: { xs: 8, md: 12 } }}>
             You Feel It!
           </ItalicHeading>
           <BodyText sx={{ mb: { xs: 3, md: 4 } }}>
@@ -156,8 +157,8 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ VALUE / PERSONALITY / PURPOSE ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 14 }, backgroundColor: cream }}>
-        <CraftPaperBg flipY={true} />
+      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 14 } }}>
+        <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 904, mx: 'auto', px: { xs: 4, md: 6 } }}>
           {[
             {
@@ -182,8 +183,8 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ BRAND ASSET PACK ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 8, md: 12 }, pb: 0, backgroundColor: cream }}>
-        <CraftPaperBg />
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 8, md: 12 }, pb: 0 }}>
+        <CraftPaperBg flipY={true} />
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <Box sx={{ px: { xs: 4, sm: 6, md: 8, lg: '8.75%' }, mb: { xs: 5, md: 8 } }}>
             <Typography sx={{
@@ -227,7 +228,7 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ HOT CUP DESIGN ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 15, backgroundColor: cream }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 15 }}>
         <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
@@ -283,7 +284,7 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ DARK APPAREL DESIGN ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: cream }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden' }}>
         <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="center" sx={{ pt: { xs: 6, md: 8 }, px: { xs: 4, md: 6 }, mb: { xs: 3, md: 4 } }}>
