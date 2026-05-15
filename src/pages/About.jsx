@@ -30,7 +30,7 @@ export default function About() {
       <Box
         sx={{
           position: 'relative',
-          height: {xs: 500, md: 500},
+          height: {xs: 300, sm: 400, md: 500},
           overflow: 'hidden',
           mt: 0,
         //   background: 'linear-gradient(to top right, #7C5A56 0%, #644743 100%)',
@@ -38,45 +38,44 @@ export default function About() {
         }}
       >
         <Box
-          component="img"
-          src={ASSETS.aboutMePhoto}
-          alt="Jasmine Lin"
-          sx={{
+            component="img"
+            src={ASSETS.aboutMePhoto}
+            alt="Jasmine Lin"
+            sx={{
             position: 'absolute',
             right: 0,
             top: 0,
             height: '100%',
             width: 'auto',
-          }}
+            }}
         />
       </Box>
 
       {/* ── INTRO ── */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: 0, pb: { xs: 8, md: 12 } }}>
+      <Box sx={{ position: 'relative', pt: 0, pb: { xs: 8, md: 12 } }}>
         <CraftPaperBg />
         <Box
           component="img" src={ASSETS.rose1} alt="" aria-hidden="true"
           sx={{ position: 'absolute', top: '10%', right: '-12%', width: '55%', opacity: 0.1, transform: 'rotate(161deg)', pointerEvents: 'none', zIndex: 0 }}
         />
-
+        {/* Profile photo */}
+        <Box
+            component="img"
+            src={ASSETS.profilePhoto}
+            alt="Jasmine Lin profile"
+            sx={{
+            position: 'absolute',
+            top: { xs: '-15%', sm: '-25%', md: '-65%' },
+            left: '10%',
+            zIndex: 10,
+            width: { xs: '27%', sm: "27%", md: '100%' },
+            maxWidth: 340,
+            boxShadow: '0 6px 30px rgba(64,41,44,0.18)',
+            }}
+        />
         <Grid container spacing={6} sx={{ position: 'relative', zIndex: 1, px: { xs: 3, md: 10 }, pt: 8, maxWidth: 1200, mx: 'auto' }}>
-          {/* Profile photo */}
-          <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-            <Box
-              component="img"
-              src={ASSETS.profilePhoto}
-              alt="Jasmine Lin profile"
-              sx={{
-                width: { xs: '60%', md: '100%' },
-                maxWidth: 340,
-                borderRadius: 2,
-                boxShadow: '0 6px 30px rgba(64,41,44,0.18)',
-              }}
-            />
-          </Grid>
-
           {/* Bio text */}
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} sm={12}md={8}>
             <Typography variant="overline" sx={{ fontSize: '0.75rem', color: '#ae8f8e', display: 'block', mb: 1 }}>
               ABOUT JASMINE
             </Typography>
@@ -164,3 +163,5 @@ export default function About() {
     </Box>
   );
 }
+
+
