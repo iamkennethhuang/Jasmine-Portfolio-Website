@@ -1,4 +1,4 @@
-import { Box, Typography, Grid, Divider, Paper } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { ASSETS } from '../assets';
 
 function CraftPaperBg({ opacity = 0.45 }) {
@@ -17,151 +17,343 @@ function CraftPaperBg({ opacity = 0.45 }) {
   );
 }
 
-const services = [
-  { title: 'Brand Identity', desc: 'Logo design, visual systems, brand guidelines, and asset creation that reflect your unique story.' },
-  { title: 'Print & Editorial', desc: 'Magazine layouts, invitations, stationery, and collateral designed with thoughtful typography.' },
-  { title: 'Advertising Design', desc: 'Campaign concepts, billboard, digital, and packaging design for meaningful brand experiences.' },
-];
-
 export default function About() {
   return (
-    <Box sx={{ overflowX: 'hidden' }}>
-      {/* ── HERO PHOTO ── */}
-      <Box
-        sx={{
-          position: 'relative',
-          height: {xs: 300, sm: 400, md: 500},
-          overflow: 'hidden',
-          mt: 0,
-        //   background: 'linear-gradient(to top right, #7C5A56 0%, #644743 100%)',
-          backgroundColor: '#7C5A56', // #7C5A56, 765551, rgba(124,90,86,0) 100%
-        }}
-      >
-        <Box
-            component="img"
-            src={ASSETS.aboutMePhoto}
-            alt="Jasmine Lin"
-            sx={{
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            height: '100%',
-            width: 'auto',
-            }}
-        />
+    <Box component="main" sx={{ overflowX: 'hidden'}}>
+
+      {/* ══ HERO ══ */}
+      <Box sx={{
+        position: 'relative',
+        height: { xs: 340, sm: 460, md: 620 },
+        overflow: 'hidden',
+        background: "#553B36",
+        zIndex: 2,
+      }}>
+        <Box component="img" src={ASSETS.aboutMePhotoNoBg} alt="Jasmine Lin" sx={{
+          position: 'absolute', right: 0, top: 0,
+          height: '100%', width: 'auto',
+          zIndex: 5,
+        }} />
       </Box>
 
-      {/* ── INTRO ── */}
-      <Box sx={{ position: 'relative', pt: 0, pb: { xs: 8, md: 12 } }}>
-        <CraftPaperBg />
-        <Box
-          component="img" src={ASSETS.rose1} alt="" aria-hidden="true"
-          sx={{ position: 'absolute', top: '10%', right: '-12%', width: '55%', opacity: 0.1, transform: 'rotate(161deg)', pointerEvents: 'none', zIndex: 0 }}
-        />
-        {/* Profile photo */}
-        <Box
-            component="img"
-            src={ASSETS.profilePhoto}
-            alt="Jasmine Lin profile"
-            sx={{
-            position: 'absolute',
-            top: { xs: '-15%', sm: '-25%', md: '-65%' },
-            left: '10%',
-            zIndex: 10,
-            width: { xs: '27%', sm: "27%", md: '100%' },
-            maxWidth: 340,
-            boxShadow: '0 6px 30px rgba(64,41,44,0.18)',
-            }}
-        />
-        <Grid container spacing={6} sx={{ position: 'relative', zIndex: 1, px: { xs: 3, md: 10 }, pt: 8, maxWidth: 1200, mx: 'auto' }}>
-          {/* Bio text */}
-          <Grid item xs={12} sm={12}md={8}>
-            <Typography variant="overline" sx={{ fontSize: '0.75rem', color: '#ae8f8e', display: 'block', mb: 1 }}>
-              ABOUT JASMINE
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '2.2rem', md: '3rem' }, mb: 3 }}>
-              Hello beautiful souls!
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3 }}>
-              I&rsquo;m <strong>Jasmine Lin</strong>, aka Yi Chen Lin, a creative designer turning ideas into something
-              meaningful and beautifully crafted.
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3 }}>
-              My creative journey started early, back in primary school. I loved making things by hand — from crocheted
-              coasters to small accessories — and even created my own mini brand and catalog to sell to classmates.
-              That was my first taste of design and entrepreneurship.
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3 }}>
-              My story begins in Taiwan, where my love for communication first started. From first grade through middle
-              school, I participated in speech contests that were never just about reading a script — but about telling a
-              story. To truly engage an audience, you had to express emotion through your voice, facial expressions,
-              and presence.
-            </Typography>
-            <Typography variant="body1" fontStyle="italic" sx={{ fontSize: '1.35rem', color: '#ae8f8e' }}>
-              &ldquo;The answer I discovered was simple: You Feel It!&rdquo;
-            </Typography>
-          </Grid>
-        </Grid>
-      </Box>
+      {/* ══ INTRO TEXT ══ */}
+      <Box sx={{
+        position: 'relative',
+        pt: { xs: '80px', sm: '120px', md: '180px' },
+        pb: { xs: 8, md: 12 },
+        textAlign: 'center'
+      }}>
+        <CraftPaperBg opacity={1} />
 
-      {/* ── EXTENDED BIO ── */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 6, md: 10 }, backgroundColor: '#faf5f0' }}>
-        <CraftPaperBg opacity={0.3} />
-        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 3, md: 6 } }}>
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={5}>
-              <Box
-                component="img"
-                src={ASSETS.chineseChar2}
-                alt="蓁織夢"
-                sx={{ width: '100%', maxWidth: 320, borderRadius: 2, boxShadow: '0 4px 20px rgba(64,41,44,0.12)' }}
-              />
-            </Grid>
-            <Grid item xs={12} md={7}>
-              <Typography variant="body1" sx={{ mb: 3 }}>
-                Those experiences taught me how to react naturally, stay adaptable under pressure, and connect with
-                people in an honest way. They also helped me realize that I&rsquo;m an extroverted person who genuinely
-                enjoys performing, engaging, and communicating with others.
-              </Typography>
-              <Typography variant="body1" sx={{ mb: 3 }}>
-                Years later, after moving to the United States, I continued developing these skills through
-                client-facing roles in fashion retail. Working in sales wasn&rsquo;t just about selling — but about
-                understanding people, communicating value, and representing a brand through the way you speak,
-                present yourself, and connect with customers.
-              </Typography>
-              <Typography variant="body1">
-                The experience refined my communication skills and deepened my understanding of people, shaping
-                who I am and what I&rsquo;m good at today.
-              </Typography>
-            </Grid>
-          </Grid>
+        {/* Profile photo — overlaps upward into hero section */}
+        <Box component="img" src={ASSETS.profilePhoto} alt="Jasmine Lin profile" sx={{
+          position: 'absolute',
+          top: { xs: '-10%', sm: '-30%', md: '-50%' },
+          left: { xs: '4%', md: '6%' },
+          width: { xs: 130, sm: 190, md: 370 },
+          zIndex: 10,
+          boxShadow: '0 8px 40px rgba(64,41,44,0.3)',
+        }} />
+
+        {/* Rose */}
+        <Box component="img" src={ASSETS.rose2} alt="" aria-hidden="true" sx={{
+          position: 'absolute', top: '-10%', left: '0%',
+          width: { xs: '100%', md: '90%' },
+          opacity: 0.28, transform: 'rotate(0deg)',
+          pointerEvents: 'none', zIndex: 1,
+        }} />
+
+        {/* Cursive watermark */}
+        <Box component="img" src={ASSETS.welcomeToMyWorld} alt="" aria-hidden="true" sx={{
+          position: 'absolute', top: '37%', left: '22%',
+          width: '100%', opacity: 0.25,
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 3, md: 6 }, pb: { xs: 6, md: 10 } }}>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.35rem', sm: '1.7rem', md: '2.2rem' },
+            color: '#40292c', lineHeight: 1.4, mb: 0,
+          }}>
+            Hello beautiful souls!
+          </Typography>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.35rem', sm: '1.7rem', md: '2.5rem' },
+            color: '#40292c', lineHeight: 1.4, mb: 0,
+          }}>
+            I&rsquo;m Jasmine Lin, aka Yi Chen Lin, a
+          </Typography>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem', lg: '5.5rem' },
+            color: '#40292c', lineHeight: 1,
+            my: { xs: 1, md: 2 }, letterSpacing: '-0.02em',
+            ml: { xs: 0, md: '20%' },
+          }}>
+            creative designer
+          </Typography>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.35rem', sm: '1.7rem', md: '2.2rem' },
+            color: '#40292c', lineHeight: 1.6, mb: 0,
+          }}>
+            turning ideas into something
+          </Typography>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.6rem', sm: '2rem', md: '2.6rem' },
+            color: '#40292c', lineHeight: 1.5,
+          }}>
+            meaningful and beautifully crafted.
+          </Typography>
         </Box>
       </Box>
 
-      {/* ── SERVICES ── */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: '#ae8f8e' }}>
-        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 1100, mx: 'auto', px: { xs: 3, md: 8 } }}>
-          <Typography variant="overline" sx={{ display: 'block', textAlign: 'center', mb: 1, fontSize: '0.75rem', color: '#f5ede8' }}>
-            SERVICES
+      {/* ══ ABOUT JASMINE ══ */}
+      <Box sx={{
+        position: 'relative',
+        overflow: 'hidden',
+        py: { xs: 10, md: 16 }
+      }}>
+        <CraftPaperBg opacity={1} />
+
+        {/* Chinese char — left edge */}
+        <Box component="img" src={ASSETS.chineseChar3} alt="" aria-hidden="true" sx={{
+          position: 'absolute', left: 0, top: '8%',
+          height: { xs: '18%', md: '30%' },
+          opacity: 1, pointerEvents: 'none', zIndex: 0,
+        }} />
+        {/* Chinese char — right edge */}
+        <Box component="img" src={ASSETS.chineseChar2} alt="" aria-hidden="true" sx={{
+          position: 'absolute', right: 0, top: '8%',
+          height: { xs: '18%', md: '30%' },
+          opacity: 1, pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        <Box sx={{
+          position: 'relative', zIndex: 1,
+          maxWidth: 640, mx: 'auto',
+          px: { xs: 5, md: 4 }, textAlign: 'center',
+        }}>
+          <Typography component="h2" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 700,
+            fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem' },
+            color: '#40292c', lineHeight: 1.1,
+            mb: { xs: 4, md: 6 },
+          }}>
+            ABOUT JASMINE
           </Typography>
-          <Divider sx={{ width: 60, mx: 'auto', borderColor: '#f5ede8', mb: 6 }} />
-          <Grid container spacing={4}>
-            {services.map((s) => (
-              <Grid item xs={12} md={4} key={s.title}>
-                <Paper
-                  elevation={0}
-                  sx={{ backgroundColor: 'rgba(245,237,232,0.18)', p: 4, height: '100%', borderRadius: 0 }}
-                >
-                  <Typography variant="h5" sx={{ color: '#faf5f0', mb: 2 }}>{s.title}</Typography>
-                  <Typography variant="body2" sx={{ color: '#f5ede8', lineHeight: 1.9 }}>{s.desc}</Typography>
-                </Paper>
-              </Grid>
+          <Typography sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.05rem', md: '1.25rem' },
+            color: '#40292c', lineHeight: 1.9, textAlign: 'justify',
+          }}>
+            My creative journey started early, back in primary school. I loved making things by hand, from crocheted
+            coasters to small accessories, and even created my own mini brand and catalog to sell to classmates,
+            which was my first taste of design and entrepreneurship.
+          </Typography>
+        </Box>
+      </Box>
+
+      {/* ══ EXTENDED BIO ══ */}
+      <Box sx={{
+        position: 'relative',
+        py: { xs: 8, md: 12 }
+      }}>
+        <CraftPaperBg opacity={1} />
+        {/* Rose */}
+        <Box component="img" src={ASSETS.rose2} alt="" aria-hidden="true" sx={{
+          position: 'absolute', top: '-70%', left: '-30%',
+          width: { xs: '100%', md: '100%' },
+          opacity: 0.28, transform: 'scaleX(-1)',
+          pointerEvents: 'none', zIndex: 1,
+        }} />
+        <Box sx={{
+          position: 'relative', zIndex: 1,
+          maxWidth: 860, mx: 'auto',
+          px: { xs: 4, md: 8 },
+          display: 'flex', gap: { xs: 4, md: 5 }, alignItems: 'stretch',
+        }}>
+          {/* Vertical accent line */}
+          <Box sx={{ width: '1px', flexShrink: 0, backgroundColor: '#40292c', opacity: 0.35 }} />
+          <Box>
+            <Typography sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '1.05rem', md: '1.25rem' },
+              color: '#40292c', lineHeight: 1.9, textAlign: 'justify', mb: 3,
+            }}>
+              Years later, working with brands like Coach and Michael Kors taught me how to understand people, how
+              to connect, observe, and anticipate what resonates. Being a top sales associate wasn&rsquo;t just about
+              selling, but about understanding what customers like and how to communicate value. You represent the
+              brand, you dress like the brand, and you speak like the brand.
+            </Typography>
+            <Typography sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '1.05rem', md: '1.25rem' },
+              color: '#40292c', lineHeight: 1.9, textAlign: 'justify',
+            }}>
+              That&rsquo;s when I realized I want to work where creativity meets strategy. It led me to pursue
+              advertising on a creative track, where I bring together my passion for craft, design, human insight,
+              and selling.
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* ══ PORTRAIT + SERVICES ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: '#f5ede8' }}>
+        <CraftPaperBg opacity={1} />
+
+        <Box sx={{
+          position: 'relative', zIndex: 1,
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+          minHeight: { md: 700 },
+        }}>
+          {/* Left: tall portrait bleeding off edge */}
+          <Box sx={{
+            position: 'relative',
+            overflow: 'hidden',
+            height: { xs: 480, md: '100%' },
+          }}>
+            <Box component="img" src={ASSETS.dscPortrait} alt="Jasmine Lin" sx={{
+              position: 'absolute',
+              left: { xs: 0, md: '-8%' },
+              top: 0,
+              height: '100%',
+              width: { xs: '100%', md: 'auto' },
+              objectFit: { xs: 'cover', md: 'unset' },
+              objectPosition: 'center top',
+            }} />
+          </Box>
+
+          {/* Right: Services */}
+            <Box sx={{
+            display: 'flex', flexDirection: 'column',
+            justifyContent: 'center',
+          }}>
+          <Box sx={{
+            py: { xs: 8, md: 14 },
+            px: { xs: 5, md: 8, lg: 10 },
+            display: 'flex', flexDirection: 'column',
+            justifyContent: 'center',
+          }}>
+            <Typography component="h2" sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '3rem', md: '4.5rem', lg: '5rem' },
+              color: '#40292c', lineHeight: 1, mb: 4,
+            }}>
+              SERVICES
+            </Typography>
+            {[
+              { label: 'BRANDING', items: ['Brand Identity Design', 'Logo / Identity Systems', 'Brand Guidelines', 'Rebranding'] },
+              { label: 'CREATIVE', items: ['Creative Direction', 'Visual Design', 'Art Direction'] },
+              { label: 'CAMPAIGN', items: ['Advertising Campaign Design', 'Campaign Concept Development', 'Social & Digital Campaign Assets'] },
+            ].map((svc) => (
+              <Box key={svc.label} sx={{ mb: { xs: 2.5, md: 3 } }}>
+                <Typography sx={{
+                  fontFamily: 'Cormorant Garamond, serif', fontWeight: 700,
+                  fontSize: { xs: '1rem', md: '1.2rem' },
+                  color: '#40292c', letterSpacing: '0.06em', mb: 0.5,
+                }}>
+                  {svc.label} —
+                </Typography>
+                {svc.items.map((item) => (
+                  <Typography key={item} sx={{
+                    fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+                    fontSize: { xs: '0.95rem', md: '1.1rem' },
+                    color: '#40292c', lineHeight: 1.85, pl: 1.5,
+                  }}>
+                    {item}
+                  </Typography>
+                ))}
+              </Box>
             ))}
-          </Grid>
+          </Box>
+          <Box sx={{
+            py: { xs: 8, md: 12 },
+            px: { xs: 5, md: 8, lg: 10 },
+            backgroundColor: '#ae8f8e' 
+          }}>
+            <Typography component="h2" sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '3rem', md: '4.5rem', lg: '4.7rem' },
+              color: '#40292c', lineHeight: 1,
+              mb: { xs: 3, md: 4 },
+            }}>
+              CONTACT
+            </Typography>
+            {['jasmineyjl@hotmail.com', 'Instagram', 'LinkedIn'].map((item) => (
+              <Typography key={item} sx={{
+                fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+                fontSize: { xs: '1.1rem', md: '1.5rem' },
+                color: '#40292c', lineHeight: 2,
+              }}>
+                {item}
+              </Typography>
+            ))}
+          </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* ══ FOOTER ══ */}
+      <Box sx={{
+        position: 'relative',
+        overflow: 'hidden',
+        backgroundColor: '#ae8f8e',
+        border: '0px 0px 0px 0px',
+        pt: { xs: 20, md:30 }
+      }}>
+        <Box sx={{
+          position: 'relative', zIndex: 1,
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          gap: { xs: 4, sm: 0 },
+          px: { xs: 5, md: 8 },
+          py: { xs: 5, md: 6 },
+        }}>
+          {/* Left: Project inquiries */}
+          <Box>
+            <Typography sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '1rem', md: '1.25rem' },
+              color: '#40292c', lineHeight: 1.5, letterSpacing: '0.04em',
+            }}>
+              PROJECT INQUIRIES
+            </Typography>
+            <Typography sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '1rem', md: '1.25rem' },
+              color: '#40292c', lineHeight: 1.5,
+            }}>
+              jasmineyjl@hotmail.com
+            </Typography>
+          </Box>
+          {/* Right: Social */}
+          <Box>
+            <Typography sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '1rem', md: '1.25rem' },
+              color: '#40292c', lineHeight: 1.5, letterSpacing: '0.04em',
+            }}>
+              SOCIAL
+            </Typography>
+            <Typography sx={{
+              fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+              fontSize: { xs: '1rem', md: '1.25rem' },
+              color: '#40292c', lineHeight: 1.5,
+            }}>
+              Instagram&emsp;&emsp;LinkedIn
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </Box>
   );
 }
-
 

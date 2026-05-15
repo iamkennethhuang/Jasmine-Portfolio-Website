@@ -12,6 +12,7 @@ import twoPageLayout        from './images/two-page-layout.png';
 import vogueCover           from './images/vogue-cover.png';
 import billboard            from './images/billboard.png';
 import aboutMePhoto         from './images/about-me-photo.png';
+import aboutMePhotoNoBg     from './images/about-me-photo-nobg.png';
 import profilePhoto         from './images/profile-photo.png';
 import chinaFlower          from './images/china-flower.png';
 import chineseChar2         from './images/chinese-char2.png';
@@ -24,6 +25,8 @@ import sweatshirtBack       from './images/sweatshirt-back.png';
 import darkSweatshirtFront  from './images/dark-sweatshirt-front.png';
 import darkSweatshirtBack   from './images/dark-sweatshirt-back.png';
 import expressionSketch     from './images/expression-sketch.png';
+import dscPortrait          from './images/dsc-portrait.png';
+import welcomeToMyWorld     from './images/welcome-to-my-world.png';
 
 export const ASSETS = {
   craftPaper,
@@ -40,6 +43,7 @@ export const ASSETS = {
   vogueCover,
   billboard,
   aboutMePhoto,
+  aboutMePhotoNoBg,
   profilePhoto,
   chinaFlower,
   chineseChar2,
@@ -52,4 +56,6 @@ export const ASSETS = {
   darkSweatshirtFront,
   darkSweatshirtBack,
   expressionSketch,
+  dscPortrait,
+  welcomeToMyWorld,
 };
