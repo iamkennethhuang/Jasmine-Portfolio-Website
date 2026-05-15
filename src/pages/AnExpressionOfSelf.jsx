@@ -141,12 +141,12 @@ export default function AnExpressionOfSelf() {
           <ItalicHeading align="center" sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem', lg: '5.5rem' }, py: { xs: 8, md: 12 } }}>
             You Feel It!
           </ItalicHeading>
-          <BodyText sx={{ mb: { xs: 3, md: 4 } }}>
+          <BodyText sx={{ mb: { xs: 3, md: 4 } ,  fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.85rem' }, fontWeight: 700, lineHeight: 1.1}}>
             Those experiences taught me how to react naturally, stay adaptable under pressure, and connect with
             people in an honest way. They also helped me realize that I&rsquo;m an extroverted person who genuinely
             enjoys performing, engaging, and communicating with others.
           </BodyText>
-          <BodyText>
+          <BodyText sx={{ fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.85rem' }, fontWeight: 700, lineHeight: 1.1 }}>
             Years later, after moving to the United States, I continued developing these skills through client-facing
             roles in fashion retail. Working in sales wasn&rsquo;t just about selling, but about understanding people,
             communicating value, and representing a brand through the way you speak, present yourself, and connect with
