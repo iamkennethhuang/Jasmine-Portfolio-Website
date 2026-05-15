@@ -27,6 +27,9 @@ import darkSweatshirtBack   from './images/dark-sweatshirt-back.png';
 import expressionSketch     from './images/expression-sketch.png';
 import dscPortrait          from './images/dsc-portrait.png';
 import welcomeToMyWorld     from './images/welcome-to-my-world.png';
+import hotCoffeeCupPhoto    from './images/hot-coffee-cup-photo.png';
+import hotCupThumb          from './images/hot-cup-thumb1.png';
+import coldCupLabelDark     from './images/cold-cup-label-dark.png';
 
 export const ASSETS = {
   craftPaper,
@@ -58,4 +61,7 @@ export const ASSETS = {
   expressionSketch,
   dscPortrait,
   welcomeToMyWorld,
+  hotCoffeeCupPhoto,
+  hotCupThumb,
+  coldCupLabelDark,
 };

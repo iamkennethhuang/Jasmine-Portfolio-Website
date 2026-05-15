@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { ASSETS } from '../assets';
 
-function CraftPaperBg({ opacity = 0.45 }) {
+function CraftPaperBg({ opacity = 0.45, flipY = false }) {
   return (
     <Box
       component="img"
@@ -12,6 +12,7 @@ function CraftPaperBg({ opacity = 0.45 }) {
         position: 'absolute', top: 0, left: '-5%',
         width: '110%', height: '100%',
         objectFit: 'cover', opacity, pointerEvents: 'none', zIndex: 0,
+        transform: flipY ? 'scaleY(-1)' : 'none',
       }}
     />
   );
@@ -117,7 +118,7 @@ export default function About() {
         overflow: 'hidden',
         py: { xs: 10, md: 16 }
       }}>
-        <CraftPaperBg opacity={1} />
+        <CraftPaperBg opacity={1} flipY={true}/>
 
         {/* Chinese char — left edge */}
         <Box component="img" src={ASSETS.chineseChar3} alt="" aria-hidden="true" sx={{
@@ -204,7 +205,7 @@ export default function About() {
 
       {/* ══ PORTRAIT + SERVICES ══ */}
       <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: '#f5ede8' }}>
-        <CraftPaperBg opacity={1} />
+        <CraftPaperBg opacity={1} flipY={true} />
 
         <Box sx={{
           position: 'relative', zIndex: 1,

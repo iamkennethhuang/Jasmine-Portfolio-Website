@@ -1,168 +1,331 @@
-import { Box, Typography, Grid, Divider } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { ASSETS } from '../assets';
 
-function CraftPaperBg({ opacity = 0.4 }) {
-  return (
-    <Box
-      component="img" src={ASSETS.craftPaper} alt="" aria-hidden="true"
-      sx={{ position: 'absolute', top: 0, left: '-5%', width: '110%', height: '100%', objectFit: 'cover', opacity, pointerEvents: 'none', zIndex: 0 }}
-    />
-  );
-}
+// ─── design tokens ────────────────────────────────────────────────
+const serif = 'Cormorant Garamond, serif';
+const brown = '#40292c';
+const mauve = '#ae8f8e';
+const cream = '#f5ede8';
 
-function SectionLabel({ children }) {
+// ─── shared sub-components ────────────────────────────────────────
+function ItalicHeading({ children, align = 'left', sx: extra = {} }) {
   return (
-    <Typography variant="overline" sx={{ display: 'block', fontSize: '0.75rem', color: '#ae8f8e', mb: 1 }}>
+    <Typography sx={{
+      fontFamily: serif, fontWeight: 700, fontStyle: 'italic',
+      fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.5rem', lg: '4.5rem' },
+      color: brown, lineHeight: 1,
+      textAlign: align,
+      ...extra,
+    }}>
       {children}
     </Typography>
   );
 }
 
+function BodyText({ children, sx: extra = {} }) {
+  return (
+    <Typography sx={{
+      fontFamily: serif, fontWeight: 600,
+      fontSize: { xs: '1rem', md: '1.1rem', lg: '1.25rem' },
+      color: brown, lineHeight: 1.9,
+      ...extra,
+    }}>
+      {children}
+    </Typography>
+  );
+}
+
+// ─── craft paper texture overlay ─────────────────────────────────
+function CraftPaperBg({ opacity = 1, flipY = false }) {
+  return (
+    <Box
+      component="img" src={ASSETS.craftPaper} alt="" aria-hidden="true"
+      sx={{ position: 'absolute', top: 0, left: '-5%', width: '110%', height: '100%', objectFit: 'cover', opacity, pointerEvents: 'none', zIndex: 0, transform: flipY ? 'scaleY(-1)' : 'none' }}
+    />
+  );
+}
+
+// ─── page ─────────────────────────────────────────────────────────
 export default function AnExpressionOfSelf() {
   return (
-    <Box sx={{ overflowX: 'hidden' }}>
-      {/* ── HERO ── */}
-      <Box sx={{ position: 'relative', height: { xs: 340, md: 560 }, overflow: 'hidden' }}>
-        <Box
-          component="img" src={ASSETS.expressionOfSelfBanner} alt="An Expression of Self"
-          sx={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
-        />
-        <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(64,41,44,0.15) 0%, rgba(64,41,44,0.6) 100%)' }} />
-        <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, p: { xs: 4, md: 10 } }}>
-          <Typography variant="overline" sx={{ color: '#e8d5c4', fontSize: '0.75rem' }}>BRAND ASSET DESIGN</Typography>
-          <Typography variant="h1" sx={{ color: '#fff', fontSize: { xs: '2rem', md: '3.8rem' }, lineHeight: 1.1 }}>
+    <Box component="main" sx={{ overflowX: 'hidden' }}>
+
+      {/* ══ HEADLINE ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, sm: 8, md: 12 }, pb: { xs: 5, md: 8 }, backgroundColor: cream }}>
+        <CraftPaperBg />
+        <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 4, sm: 6, md: 8, lg: '8.75%' } }}>
+          <Typography sx={{
+            fontFamily: serif, fontWeight: 700,
+            fontSize: { xs: '2.2rem', sm: '3rem', md: '4.5rem', lg: '5.5rem' },
+            color: brown, lineHeight: 1, textAlign: 'center'
+          }}>
             AN EXPRESSION OF SELF
           </Typography>
-          <Typography variant="body2" sx={{ color: '#e8d5c4', mt: 1, fontStyle: 'italic', fontSize: '1.1rem' }}>
-            — Brand Asset Design —
+          <Typography sx={{
+            fontFamily: serif, fontWeight: 400,
+            fontSize: { xs: '0.9rem', sm: '1.05rem', md: '1.5rem', lg: '2rem' },
+            color: brown, letterSpacing: { xs: '0.15em', md: '0.22em' },
+            mt: { xs: 1.5, md: 2 },
+            textAlign: 'center',
+          }}>
+            —BRAND ASSET DESIGN—
           </Typography>
         </Box>
       </Box>
 
-      {/* ── PROJECT DESCRIPTION ── */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: '#f5ede8' }}>
+      {/* ══ BANNER IMAGE ══ */}
+      <Box sx={{ width: '100%', height: { xs: 240, sm: 380, md: 560, lg: 700 }, overflow: 'hidden', zIndex: 1 }}>
+        <Box component="img" src={ASSETS.expressionOverview} alt="An Expression of Self" sx={{
+          width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block',
+        }} />
+      </Box>
+
+      {/* ══ DESCRIPTION + HEADING ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 8, md: 10 }, pb: { xs: 2, md: 3 }, backgroundColor: cream }}>
         <CraftPaperBg />
-        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 3, md: 6 } }}>
-          <SectionLabel>THE PROJECT</SectionLabel>
-          <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.8rem' }, mb: 4 }}>
+        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 4, md: 6 } }}>
+          <BodyText>
+            A personal branding project inspired by who I am, how I communicate, and the way I connect with
+            people. I designed a custom logo and brand asset system that reflects my personality, values, and
+            creative journey through thoughtful visual storytelling.
+          </BodyText>
+        </Box>
+      </Box>
+
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 4, md: 6 }, pb: { xs: 8, md: 12 }, backgroundColor: cream }}>
+        <CraftPaperBg />
+        <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 4, sm: 6, md: 8, lg: '8.75%' } }}>
+          <Typography sx={{
+            fontFamily: serif, fontWeight: 700,
+            fontSize: { xs: '2rem', sm: '2.8rem', md: '4rem', lg: '5.5rem' },
+            color: brown, lineHeight: 1.05,
+          }}>
             MY VALUE, IDENTITY, PERSONALITY
           </Typography>
-          <Typography variant="body1" sx={{ fontSize: '1.2rem', mb: 3 }}>
-            A personal branding project inspired by who I am, how I communicate, and the way I connect with people.
-            I designed a custom logo and brand asset system that reflects my personality, values, and creative journey
-            through thoughtful visual storytelling.
-          </Typography>
-          <Divider sx={{ my: 4, borderColor: '#ae8f8e' }} />
-
-          {/* Overview image */}
-          <Box
-            component="img" src={ASSETS.expressionOverview} alt="Project Overview"
-            sx={{ width: '100%', borderRadius: 1, boxShadow: '0 4px 24px rgba(64,41,44,0.12)', mb: 6 }}
-          />
-
-          {/* Sketch */}
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Box component="img" src={ASSETS.expressionSketch} alt="Sketch process"
-                sx={{ width: '100%', borderRadius: 1, boxShadow: '0 4px 20px rgba(64,41,44,0.1)' }}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <SectionLabel>BACKGROUND</SectionLabel>
-              <Typography variant="body1">
-                My story begins in Taiwan, where my love for communication first started. From first grade through
-                middle school, I participated in speech contests that were never just about reading a script — but
-                about telling a story. To truly engage an audience, you had to express emotion through your voice,
-                facial expressions, and presence. But the real question was always: how do you express emotion
-                without faking it?
-              </Typography>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
 
-      {/* ── VALUE / PERSONALITY / PURPOSE ── */}
-      <Box sx={{ backgroundColor: '#faf5f0', py: { xs: 8, md: 12 }, px: { xs: 3, md: 8 }, position: 'relative', overflow: 'hidden' }}>
-        <CraftPaperBg opacity={0.25} />
-        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 1100, mx: 'auto' }}>
-          <Typography variant="h2" sx={{ textAlign: 'center', fontSize: { xs: '1.8rem', md: '2.8rem' }, mb: 8 }}>
-            The Answer Was Simple: <em>You Feel It!</em>
-          </Typography>
-          <Grid container spacing={5}>
-            {[
-              {
-                label: 'Value',
-                text: "My values lie in connection, authenticity, and adaptability. I believe deeply in genuine communication and meaningful human connection — whether through storytelling, branding, or everyday interactions. Growing up in Taiwan and later moving to the United States allowed me to blend Eastern and Western perspectives, helping me connect naturally with people from diverse backgrounds.",
-              },
-              {
-                label: 'Personality',
-                text: "At my core, I am extroverted, playful, and expressive. I bring warmth, energy, and empathy into the way I interact with others, and I genuinely enjoy creating spaces where people feel welcomed, understood, and connected.",
-              },
-              {
-                label: 'Purpose',
-                text: "My dream is to one day open my own yoga studio, Elysium — a space centered around creativity, community, and peace. I hope to shape the studio's branding, visual identity, and atmosphere using the creative skills I've developed through advertising and design. My purpose is simple: to make people feel understood, and to create experiences that leave a positive impact.",
-              },
-            ].map(({ label, text }) => (
-              <Grid item xs={12} md={4} key={label}>
-                <SectionLabel>{label.toUpperCase()}</SectionLabel>
-                <Typography variant="h4" sx={{ mb: 2 }}>{label}</Typography>
-                <Typography variant="body1">{text}</Typography>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Box>
-
-      {/* ── BRAND ASSET PACK ── */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: '#f5ede8' }}>
+      {/* ══ BACKSTORY ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: cream }}>
         <CraftPaperBg />
-        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 1100, mx: 'auto', px: { xs: 3, md: 8 } }}>
-          <SectionLabel>BRAND ASSET PACK</SectionLabel>
-          <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '3rem' }, mb: 2 }}>Logo & Identity</Typography>
-          <Typography variant="body1" sx={{ maxWidth: 600, mb: 6 }}>
-            Based on who I am and how I show up in the world, I created a brand asset pack that feels true to me.
-            The logo features a serif J with jasmine flowers, representing both my name and the softness, honesty,
-            and gentle strength I bring into my interactions.
-          </Typography>
-
-          {/* Logo overview */}
-          <Box component="img" src={ASSETS.logoOverview} alt="Logo Overview"
-            sx={{ width: '100%', maxWidth: 780, display: 'block', mx: 'auto', borderRadius: 1, boxShadow: '0 4px 20px rgba(64,41,44,0.12)', mb: 8 }}
-          />
-
-          {/* Stationery */}
-          <SectionLabel>STATIONERY SYSTEM</SectionLabel>
-          <Typography variant="h3" sx={{ mb: 3, fontSize: { xs: '1.8rem', md: '2.4rem' } }}>Stationery System</Typography>
-          <Box component="img" src={ASSETS.stationery} alt="Stationery System"
-            sx={{ width: '100%', borderRadius: 1, boxShadow: '0 4px 20px rgba(64,41,44,0.1)', mb: 8 }}
-          />
-
-          {/* Coffee Cups */}
-          <SectionLabel>COFFEE CUPS</SectionLabel>
-          <Typography variant="h3" sx={{ mb: 3, fontSize: { xs: '1.8rem', md: '2.4rem' } }}>Coffee Cups</Typography>
-          <Box component="img" src={ASSETS.coffeeCup} alt="Coffee Cup Label"
-            sx={{ width: '100%', borderRadius: 1, boxShadow: '0 4px 20px rgba(64,41,44,0.1)', mb: 8 }}
-          />
-
-          {/* Clothing */}
-          <SectionLabel>CLOTHING</SectionLabel>
-          <Typography variant="h3" sx={{ mb: 3, fontSize: { xs: '1.8rem', md: '2.4rem' } }}>Clothing</Typography>
-          <Grid container spacing={3}>
-            {[
-              { src: ASSETS.sweatshirt, alt: 'Light Sweatshirt Front' },
-              { src: ASSETS.sweatshirtBack, alt: 'Light Sweatshirt Back' },
-              { src: ASSETS.darkSweatshirtFront, alt: 'Dark Sweatshirt Front' },
-              { src: ASSETS.darkSweatshirtBack, alt: 'Dark Sweatshirt Back' },
-            ].map(({ src, alt }) => (
-              <Grid item xs={6} md={3} key={alt}>
-                <Box component="img" src={src} alt={alt}
-                  sx={{ width: '100%', borderRadius: 1, boxShadow: '0 4px 16px rgba(64,41,44,0.1)' }}
-                />
-              </Grid>
-            ))}
-          </Grid>
+        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 4, md: 6 } }}>
+          <ItalicHeading sx={{ mb: { xs: 3, md: 4 } }}>Backstory</ItalicHeading>
+          <BodyText sx={{ mb: { xs: 5, md: 7 } }}>
+            My story begins in Taiwan, where my love for communication first started. From first grade through
+            middle school, I participated in speech contests that were never just about reading a script, but about
+            telling a story. To truly engage an audience, you had to express emotion through your voice, facial
+            expressions, and presence. But the real question was always: how do you express emotion without faking it?
+          </BodyText>
+          <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
+            <Box component="img" src={ASSETS.expressionSketch} alt="Backstory sketch" sx={{
+              width: { xs: '100%', md: '74%' }, display: 'block',
+            }} />
+          </Box>
         </Box>
       </Box>
+
+      {/* ══ YOU FEEL IT ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: cream }}>
+        <CraftPaperBg />
+        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 4, md: 6 } }}>
+          <BodyText sx={{ mb: { xs: 2, md: 3 } }}>The answer I discovered was simple:</BodyText>
+          <ItalicHeading sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem', lg: '5.5rem' }, mb: { xs: 5, md: 7 } }}>
+            You Feel It!
+          </ItalicHeading>
+          <BodyText sx={{ mb: { xs: 3, md: 4 } }}>
+            Those experiences taught me how to react naturally, stay adaptable under pressure, and connect with
+            people in an honest way. They also helped me realize that I&rsquo;m an extroverted person who genuinely
+            enjoys performing, engaging, and communicating with others.
+          </BodyText>
+          <BodyText>
+            Years later, after moving to the United States, I continued developing these skills through client-facing
+            roles in fashion retail. Working in sales wasn&rsquo;t just about selling, but about understanding people,
+            communicating value, and representing a brand through the way you speak, present yourself, and connect with
+            customers. The experience refined my communication skills and deepened my understanding of people, shaping
+            who I am and what I&rsquo;m good at today.
+          </BodyText>
+        </Box>
+      </Box>
+
+      {/* ══ VALUE / PERSONALITY / PURPOSE ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 14 }, backgroundColor: cream }}>
+        <CraftPaperBg />
+        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 904, mx: 'auto', px: { xs: 4, md: 6 } }}>
+          {[
+            {
+              label: 'Value',
+              text: 'My values lie in connection, authenticity, and adaptability. I believe deeply in genuine communication and meaningful human connection, whether through storytelling, branding, or everyday interactions. Growing up in Taiwan and later moving to the United States allowed me to blend Eastern and Western perspectives, helping me connect naturally with people from diverse backgrounds.',
+            },
+            {
+              label: 'Personality',
+              text: 'At my core, I am extroverted, playful, and expressive. I bring warmth, energy, and empathy into the way I interact with others, and I genuinely enjoy creating spaces where people feel welcomed, understood, and connected.',
+            },
+            {
+              label: 'Purpose',
+              text: "My dream is to one day open my own yoga studio, Elysium, a space centered around creativity, community, and peace. Beyond teaching yoga, I hope to shape the studio's branding, visual identity, and atmosphere using the creative skills I've developed through advertising and design. More than anything, I want to create a space where people feel inspired, cared for, and free to fully be themselves. My purpose is simple: to make people feel understood, and to create experiences that leave a positive impact, even beyond the moments we share.",
+            },
+          ].map(({ label, text }) => (
+            <Box key={label} sx={{ mb: { xs: 7, md: 10 } }}>
+              <ItalicHeading sx={{ mb: { xs: 2, md: 3 } }}>{label}</ItalicHeading>
+              <BodyText>{text}</BodyText>
+            </Box>
+          ))}
+        </Box>
+      </Box>
+
+      {/* ══ BRAND ASSET PACK ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 8, md: 12 }, pb: 0, backgroundColor: cream }}>
+        <CraftPaperBg />
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <Box sx={{ px: { xs: 4, sm: 6, md: 8, lg: '8.75%' }, mb: { xs: 5, md: 8 } }}>
+            <Typography sx={{
+              fontFamily: serif, fontWeight: 700,
+              fontSize: { xs: '2rem', sm: '2.8rem', md: '4rem', lg: '5.5rem' },
+              color: brown, lineHeight: 1.05,
+            }}>
+              BRAND ASSET PACK
+            </Typography>
+          </Box>
+          {/* Logo (left, overflowing) + Description text (right) */}
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '55fr 45fr' }, alignItems: 'center' }}>
+            <Box sx={{ overflow: 'hidden', height: { xs: 320, sm: 480, md: 660, lg: 800 }, ml: { xs: 0, md: '-7%' } }}>
+              <Box component="img" src={ASSETS.logoOverview} alt="Logo Overview" sx={{
+                width: { xs: '100%', md: '114%' }, height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block',
+              }} />
+            </Box>
+            <Box sx={{ px: { xs: 4, md: 6, lg: 8 }, py: { xs: 5, md: 8 } }}>
+              <BodyText sx={{ textAlign: 'justify' }}>
+                Based on who I am and how I show up in the world, I created a brand asset pack that feels true to
+                me. The logo features a serif J with jasmine flowers, representing both my name and the softness,
+                honesty, and gentle strength I bring into my interactions. I applied this identity across stationery,
+                clothing, and coffee cups, with each piece reflecting a sense of warmth, authenticity, and
+                personality. Together, these elements form a brand that feels like me, both inside and out.
+              </BodyText>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* ══ STATIONERY SYSTEM ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 0, backgroundColor: mauve }}>
+        <CraftPaperBg opacity={0.3} />
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
+            Stationery System
+          </ItalicHeading>
+          <Box sx={{ px: { xs: 0, md: '1.6%' } }}>
+            <Box component="img" src={ASSETS.stationery} alt="Brand Stationery System" sx={{ width: '100%', display: 'block' }} />
+          </Box>
+        </Box>
+      </Box>
+
+      {/* ══ HOT CUP DESIGN ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 0, backgroundColor: cream }}>
+        <CraftPaperBg />
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
+            Hot Cup Design
+          </ItalicHeading>
+          <Box sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', md: '26fr 64fr' },
+            gap: { xs: 2, md: '2%' },
+            px: { xs: 0, md: '1.4%' },
+            alignItems: 'start',
+          }}>
+            {/* Thumbnails stacked on left (hidden on mobile) */}
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', gap: '3%' }}>
+              <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail" sx={{ width: '100%', display: 'block' }} />
+              <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail 2" sx={{ width: '100%', display: 'block' }} />
+            </Box>
+            {/* Large photo */}
+            <Box component="img" src={ASSETS.hotCoffeeCupPhoto} alt="Hot Coffee Cup Design" sx={{ width: '100%', display: 'block' }} />
+          </Box>
+        </Box>
+      </Box>
+
+      {/* ══ COLD CUP LABEL DESIGN ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: { xs: 4, md: 6 }, backgroundColor: mauve }}>
+        <CraftPaperBg opacity={0.3} />
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
+            Cold Cup Label Design
+          </ItalicHeading>
+          <Box sx={{ px: { xs: 2, md: '15.3%' } }}>
+            <Box component="img" src={ASSETS.coffeeCup} alt="Cold Cup Label Design" sx={{ width: '100%', display: 'block' }} />
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: { xs: 4, md: 6 }, mt: { xs: 2, md: 3 } }}>
+            <Box component="img" src={ASSETS.coldCupLabelDark} alt="Cold Cup Label Dark" sx={{
+              width: { xs: '55%', sm: '40%', md: '30%' }, display: 'block',
+            }} />
+          </Box>
+        </Box>
+      </Box>
+
+      {/* ══ LIGHT APPAREL DESIGN ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: mauve }}>
+        <CraftPaperBg opacity={0.3} />
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <ItalicHeading align="center" sx={{ pt: { xs: 6, md: 8 }, px: { xs: 4, md: 6 }, mb: { xs: 3, md: 4 } }}>
+            Light Apparel Design
+          </ItalicHeading>
+          <Box component="img" src={ASSETS.sweatshirtBack} alt="Sweatshirt Back" sx={{ width: '100%', display: 'block' }} />
+          <Box sx={{ px: { xs: 4, md: '31.5%' }, pb: { xs: 6, md: 8 } }}>
+            <Box component="img" src={ASSETS.sweatshirt} alt="Sweatshirt Front" sx={{ width: '100%', display: 'block' }} />
+          </Box>
+        </Box>
+      </Box>
+
+      {/* ══ DARK APPAREL DESIGN ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: cream }}>
+        <CraftPaperBg />
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <ItalicHeading align="center" sx={{ pt: { xs: 6, md: 8 }, px: { xs: 4, md: 6 }, mb: { xs: 3, md: 4 } }}>
+            Dark Apparel Design
+          </ItalicHeading>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' } }}>
+            <Box component="img" src={ASSETS.darkSweatshirtFront} alt="Dark Sweatshirt Front" sx={{ width: '100%', display: 'block' }} />
+            <Box component="img" src={ASSETS.darkSweatshirtBack} alt="Dark Sweatshirt Back" sx={{ width: '100%', display: 'block' }} />
+          </Box>
+        </Box>
+      </Box>
+
+      {/* ══ FOOTER ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: mauve, borderTop: '1px solid rgba(64,41,44,0.2)' }}>
+        <CraftPaperBg opacity={0.2} />
+        <Box sx={{
+          position: 'relative', zIndex: 1,
+          display: 'flex', flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: 'space-between', alignItems: 'flex-start',
+          gap: { xs: 4, sm: 0 }, px: { xs: 5, md: 8 }, py: { xs: 5, md: 6 },
+        }}>
+          <Box>
+            <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5, letterSpacing: '0.04em' }}>
+              PROJECT INQUIRIES
+            </Typography>
+            <Typography component="a" href="mailto:jasmineyjl@hotmail.com" sx={{
+              fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' },
+              color: brown, lineHeight: 1.5, display: 'block',
+              textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
+            }}>
+              jasmineyjl@hotmail.com
+            </Typography>
+          </Box>
+          <Box>
+            <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5, letterSpacing: '0.04em' }}>
+              SOCIAL
+            </Typography>
+            <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5 }}>
+              <Box component="a" href="https://www.instagram.com/whathebleep/" target="_blank" rel="noopener noreferrer" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                Instagram
+              </Box>&emsp;&emsp;<Box component="a" href="https://www.linkedin.com/in/jasmine-lin-944454207/" target="_blank" rel="noopener noreferrer" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                LinkedIn
+              </Box>
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+
     </Box>
   );
 }
