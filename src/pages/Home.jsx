@@ -26,7 +26,7 @@ function CraftPaperBg() {
 }
 
 const workItems = [
-  { title: "L'Oréal Paris Campaign", subtitle: 'Brand Campaign Design', img: ASSETS.lorealInvitation, path: '/work' },
+  { title: "L'Oréal Paris Campaign", subtitle: 'Brand Campaign Design', img: ASSETS.lorealInvitation, path: '/loreal-paris-campaign' },
   { title: 'Vogue Cover Mockup',      subtitle: 'Editorial Design',       img: ASSETS.vogueCover,    path: '/work' },
   { title: 'Stationery System',       subtitle: 'Brand Identity',          img: ASSETS.businessCard,  path: '/work' },
   { title: '2-Page Layout',           subtitle: 'Publication Design',      img: ASSETS.twoPageLayout, path: '/work' },
@@ -213,7 +213,7 @@ export default function Home() {
           <Divider sx={{ width: 60, mx: 'auto', borderColor: '#ae8f8e', mb: 6, borderWidth: 1 }} />
           <Grid container spacing={3}>
             {workItems.map((item) => (
-              <Grid item xs={12} sm={6} md={4} key={item.title}>
+              <Grid size={{ xs: 6, md: 4 }} key={item.title}>
                 <Card
                   elevation={0}
                   sx={{

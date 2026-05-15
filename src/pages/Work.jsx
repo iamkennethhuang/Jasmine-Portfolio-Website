@@ -2,7 +2,7 @@ import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Di
 import { Link } from 'react-router-dom';
 import { ASSETS } from '../assets';
 
-const projects = [
+export const projects = [
   {
     title: "An Expression of Self",
     subtitle: "Brand Asset Design",
@@ -17,7 +17,7 @@ const projects = [
     subtitle: "Brand Campaign Design",
     category: "ADVERTISING",
     img: ASSETS.lorealInvitation,
-    path: '/work',
+    path: '/loreal-paris-campaign',
     description: "Invitation design and campaign materials for a mock L'Oréal Paris brand experience.",
   },
   {
