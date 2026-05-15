@@ -30,6 +30,7 @@ import welcomeToMyWorld     from './images/welcome-to-my-world.png';
 import hotCoffeeCupPhoto    from './images/hot-coffee-cup-photo.png';
 import hotCupThumb          from './images/hot-cup-thumb1.png';
 import coldCupLabelDark     from './images/cold-cup-label-dark.png';
+import coldCupLabelPhoto    from './images/cold-cup-label-photo.png';
 
 export const ASSETS = {
   craftPaper,
@@ -64,4 +65,5 @@ export const ASSETS = {
   hotCoffeeCupPhoto,
   hotCupThumb,
   coldCupLabelDark,
+  coldCupLabelPhoto,
 };

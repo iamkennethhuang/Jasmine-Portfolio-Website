@@ -174,19 +174,19 @@ export default function AnExpressionOfSelf() {
               text: "My dream is to one day open my own yoga studio, Elysium, a space centered around creativity, community, and peace. Beyond teaching yoga, I hope to shape the studio's branding, visual identity, and atmosphere using the creative skills I've developed through advertising and design. More than anything, I want to create a space where people feel inspired, cared for, and free to fully be themselves. My purpose is simple: to make people feel understood, and to create experiences that leave a positive impact, even beyond the moments we share.",
             },
           ].map(({ label, text }) => (
-            <Box key={label} sx={{ mb: { xs: 7, md: 10 } }}>
+            <Box key={label}>
               <ItalicHeading sx={{ mb: { xs: 2, md: 3 } }}>{label}</ItalicHeading>
-              <BodyText>{text}</BodyText>
+              <BodyText sx={{fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.85rem' }, fontWeight: 700, lineHeight: 1.1}}>{text}</BodyText>
             </Box>
           ))}
         </Box>
       </Box>
 
       {/* ══ BRAND ASSET PACK ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 8, md: 12 }, pb: 0 }}>
+      <Box sx={{ position: 'relative', overflow: 'visible', zIndex: 2 }}>
         <CraftPaperBg flipY={true} />
         <Box sx={{ position: 'relative', zIndex: 1 }}>
-          <Box sx={{ px: { xs: 4, sm: 6, md: 8, lg: '8.75%' }, mb: { xs: 5, md: 8 } }}>
+          <Box sx={{ px: { xs: 4, sm: 6, md: 8, lg: '8.75%' }}}>
             <Typography sx={{
               fontFamily: serif, fontWeight: 700,
               fontSize: { xs: '2rem', sm: '2.8rem', md: '4rem', lg: '5.5rem' },
@@ -197,13 +197,13 @@ export default function AnExpressionOfSelf() {
           </Box>
           {/* Logo (left, overflowing) + Description text (right) */}
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '55fr 45fr' }, alignItems: 'center' }}>
-            <Box sx={{ overflow: 'hidden', height: { xs: 320, sm: 480, md: 660, lg: 800 }, ml: { xs: 0, md: '-7%' } }}>
+            <Box sx={{ position: 'relative', zIndex: 2, height: { xs: 320, sm: 480, md: 660, lg: 800 }, ml: { xs: 0, md: '-7%' }, transform: 'translateY(10%)' }}>
               <Box component="img" src={ASSETS.logoOverview} alt="Logo Overview" sx={{
-                width: { xs: '100%', md: '114%' }, height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block',
+                width: { xs: '100%', md: '114%' }, height: '100%', objectFit: 'cover', display: 'block', 
               }} />
             </Box>
-            <Box sx={{ px: { xs: 4, md: 6, lg: 8 }, py: { xs: 5, md: 8 } }}>
-              <BodyText sx={{ textAlign: 'justify' }}>
+            <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 4, md: 6, lg: 8 }, py: { xs: 5, md: 8 } }}>
+              <BodyText sx={{ textAlign: 'justify', fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.85rem' }, fontWeight: 700, lineHeight: 1.1 }}>
                 Based on who I am and how I show up in the world, I created a brand asset pack that feels true to
                 me. The logo features a serif J with jasmine flowers, representing both my name and the softness,
                 honesty, and gentle strength I bring into my interactions. I applied this identity across stationery,
@@ -216,7 +216,7 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ STATIONERY SYSTEM ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 15, backgroundColor: mauve }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 15, backgroundColor: mauve, zIndex: 1 }}>
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
             Stationery System
@@ -237,14 +237,14 @@ export default function AnExpressionOfSelf() {
           <Box sx={{
             display: 'grid',
             gridTemplateColumns: { xs: '1fr', md: '26fr 64fr' },
-            gap: { xs: 2, md: '2%' },
+            gap: { xs: 2, md: '1%' },
             px: { xs: 0, md: '1.4%' },
             alignItems: 'start',
           }}>
             {/* Thumbnails stacked on left (hidden on mobile) */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', gap: '3%' }}>
-              <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail" sx={{ width: '100%', display: 'block' }} />
-              <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail 2" sx={{ width: '100%', display: 'block' }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', gap: 1.5 }}>
+              <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail" sx={{ width: '97%', display: 'block' }} />
+              <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail 2" sx={{ width: '97%', display: 'block' }} />
             </Box>
             {/* Large photo */}
             <Box component="img" src={ASSETS.hotCoffeeCupPhoto} alt="Hot Coffee Cup Design" sx={{ width: '100%', display: 'block' }} />
@@ -253,52 +253,95 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ COLD CUP LABEL DESIGN ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: { xs: 4, md: 20 }, backgroundColor: mauve }}>
-
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: { xs: 8, md: 20 }, backgroundColor: mauve }}>
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
             Cold Cup Label Design
           </ItalicHeading>
-          <Box sx={{ px: { xs: 2, md: '15.3%' } }}>
-            <Box component="img" src={ASSETS.coffeeCup} alt="Cold Cup Label Design" sx={{ width: '100%', display: 'block' }} />
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: { xs: 4, md: 6 }, mt: { xs: 2, md: 3 } }}>
-            <Box component="img" src={ASSETS.coldCupLabelDark} alt="Cold Cup Label Dark" sx={{
-              width: { xs: '55%', sm: '40%', md: '30%' }, display: 'block', position: 'absolute', zIndex: 1, top: "90%", right: { xs: '5%', md: '8%' }
-            }} />
+          {/* Layered image area */}
+          <Box sx={{ position: 'relative', px: { xs: 2, md: 0 } }}>
+            {/* Dark brand card — top left, in front */}
+            <Box component="img" src={ASSETS.coldCupLabelPhoto} alt="Cold Cup Brand Card"
+              sx={{
+                display: { xs: 'none', md: 'block' },
+                position: 'absolute', zIndex: 2,
+                left: '4.2%',
+                top: '-10%',
+                width: '23%',
+              }}
+            />
+            {/* Main cups photo — centered */}
+            <Box sx={{ mx: 'auto', width: { xs: '100%', md: '83%' } }}>
+              <Box component="img" src={ASSETS.coffeeCup} alt="Cold Cup Label Design" 
+              sx={{ width: '100%', display: 'block' }} />
+            </Box>
+            {/* Pink label — bottom right */}
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: { xs: 4, md: '4%' }, mt: { xs: 3, md: 4 } }}>
+              <Box component="img" src={ASSETS.coldCupLabelDark} alt="Cold Cup Label" 
+              sx={{ 
+                width: { xs: '55%', sm: '40%', md: '31%' }, 
+                display: 'block', 
+                position: 'absolute', 
+                zIndex: 2, 
+                bottom: '-15%', 
+                right: '3%' 
+                }} />
+            </Box>
           </Box>
         </Box>
       </Box>
 
       {/* ══ LIGHT APPAREL DESIGN ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: mauve }}>
+      <Box sx={{ position: 'relative', overflow: 'visible', backgroundColor: mauve, zIndex: 2 }}>
         <Box sx={{ position: 'relative', zIndex: 1 }}>
-          <ItalicHeading align="center" sx={{ pt: { xs: 6, md: 8 }, px: { xs: 4, md: 6 }, mb: { xs: 3, md: 4 } }}>
+          <ItalicHeading align="right" sx={{ 
+            pt: { xs: 6, md: 8 }, 
+            px: { xs: 4, md: 6 }, 
+            mb: { xs: 3, md: 4 } }}>
             Light Apparel Design
           </ItalicHeading>
-          <Box component="img" src={ASSETS.sweatshirtBack} alt="Sweatshirt Back" sx={{ width: '100%', display: 'block' }} />
-          <Box sx={{ px: { xs: 4, md: '31.5%' }, pb: { xs: 6, md: 8 } }}>
-            <Box component="img" src={ASSETS.sweatshirt} alt="Sweatshirt Front" sx={{ width: '100%', display: 'block' }} />
+          <Box sx={{ overflow: 'hidden' }}>
+            <Box component="img" src={ASSETS.sweatshirtBack} alt="Sweatshirt Back" 
+            sx={{ width: '100%', display: 'block' }} />
+          </Box>
+          {/* Sweatshirt front — right-aligned, shifted down 10%, overlaps next section by 50% */}
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            pr: { xs: 4, md: 6 },
+            position: 'relative',
+            zIndex: 2,
+            transform: 'translateY(10%)',
+          }}>
+            <Box component="img" src={ASSETS.sweatshirt} alt="Sweatshirt Front"
+            sx={{ width: '70%', display: 'block' }} />
           </Box>
         </Box>
       </Box>
 
       {/* ══ DARK APPAREL DESIGN ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', zIndex: 1, pb: { xs: 30, md: 30 } }}>
         <CraftPaperBg />
-        <Box sx={{ position: 'relative', zIndex: 1 }}>
-          <ItalicHeading align="center" sx={{ pt: { xs: 6, md: 8 }, px: { xs: 4, md: 6 }, mb: { xs: 3, md: 4 } }}>
+        <Box sx={{ position: 'relative', zIndex: 1, pt: { xs: '5%', md: '5%' } }}>
+          <ItalicHeading align="right" sx={{ pt: { xs: 6, md: 8 }, px: { xs: 4, md: 6 }, mb: { xs: 3, md: 4 } }}>
             Dark Apparel Design
           </ItalicHeading>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' } }}>
-            <Box component="img" src={ASSETS.darkSweatshirtFront} alt="Dark Sweatshirt Front" sx={{ width: '100%', display: 'block' }} />
-            <Box component="img" src={ASSETS.darkSweatshirtBack} alt="Dark Sweatshirt Back" sx={{ width: '100%', display: 'block' }} />
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, pr: { xs: 7 }, gap: { xs: 2, md: 3 } }}>
+            <Box component="img" 
+            src={ASSETS.darkSweatshirtFront} 
+            alt="Dark Sweatshirt Front" 
+            sx={{ width: '100%', display: 'block' }} />
+            <Box component="img" 
+            src={ASSETS.darkSweatshirtBack} 
+            alt="Dark Sweatshirt Back" 
+            sx={{ width: '100%', display: 'block' }} />
           </Box>
         </Box>
       </Box>
 
       {/* ══ FOOTER ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: mauve, borderTop: '1px solid rgba(64,41,44,0.2)', pt: { xs: 6, md: 10 }}}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 10 }}}>
+        <CraftPaperBg flipY={true} />
         <Box sx={{
           position: 'relative', zIndex: 1,
           display: 'flex', flexDirection: { xs: 'column', sm: 'row' },
