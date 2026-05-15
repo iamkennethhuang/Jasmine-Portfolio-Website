@@ -48,10 +48,10 @@ function CraftPaperBg({ opacity = 1, flipY = false }) {
 // ─── page ─────────────────────────────────────────────────────────
 export default function AnExpressionOfSelf() {
   return (
-    <Box component="main" sx={{ overflowX: 'hidden' }}>
+    <Box component="main" sx={{ position: 'relative', overflowX: 'hidden' }}>
 
       {/* ══ HEADLINE ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, sm: 8, md: 12 }, pb: { xs: 5, md: 8 }, backgroundColor: cream }}>
+      <Box sx={{ position: 'relative', zIndex: 1, overflow: 'hidden', pt: { xs: 6, sm: 8, md: 12 }, pb: { xs: 5, md: 8 }, backgroundColor: cream }}>
         <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 4, sm: 6, md: 8, lg: '8.75%' } }}>
           <Typography sx={{
@@ -74,7 +74,8 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ BANNER IMAGE ══ */}
-      <Box sx={{ width: '100%', height: { xs: 240, sm: 380, md: 560, lg: 700 }, overflow: 'hidden', zIndex: 1 }}>
+      <Box sx={{ position: 'relative', width: '100%', height: { xs: 240, sm: 380, md: 560, lg: 700 }, overflow: 'hidden' }}>
+        {/* <CraftPaperBg flipY={true} /> */}
         <Box component="img" src={ASSETS.expressionOverview} alt="An Expression of Self" sx={{
           width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block',
         }} />
@@ -107,7 +108,7 @@ export default function AnExpressionOfSelf() {
 
       {/* ══ BACKSTORY ══ */}
       <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: cream }}>
-        <CraftPaperBg />
+        <CraftPaperBg flipY={true} />
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 4, md: 6 } }}>
           <ItalicHeading sx={{ mb: { xs: 3, md: 4 } }}>Backstory</ItalicHeading>
           <BodyText sx={{ mb: { xs: 5, md: 7 } }}>
@@ -116,10 +117,17 @@ export default function AnExpressionOfSelf() {
             telling a story. To truly engage an audience, you had to express emotion through your voice, facial
             expressions, and presence. But the real question was always: how do you express emotion without faking it?
           </BodyText>
-          <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
-            <Box component="img" src={ASSETS.expressionSketch} alt="Backstory sketch" sx={{
-              width: { xs: '100%', md: '74%' }, display: 'block',
-            }} />
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ width: { xs: '100%', md: '90%' }, aspectRatio: '16/9', flexShrink: 0 }}>
+              <Box
+                component="iframe"
+                src="https://www.youtube.com/embed/oCL6ywXn1yw"
+                title="Backstory video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                sx={{ width: '100%', height: '100%', border: 0, display: 'block' }}
+              />
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -128,7 +136,7 @@ export default function AnExpressionOfSelf() {
       <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 12 }, backgroundColor: cream }}>
         <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 900, mx: 'auto', px: { xs: 4, md: 6 } }}>
-          <BodyText sx={{ mb: { xs: 2, md: 3 } }}>The answer I discovered was simple:</BodyText>
+          <BodyText sx={{ mb: { xs: 2, md: 3 }, fontSize: { xs: '1.3rem', md: '1.6rem', lg: '2rem' }, fontWeight: 700 }}>The answer I discovered was simple:</BodyText>
           <ItalicHeading sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem', lg: '5.5rem' }, mb: { xs: 5, md: 7 } }}>
             You Feel It!
           </ItalicHeading>
@@ -149,7 +157,7 @@ export default function AnExpressionOfSelf() {
 
       {/* ══ VALUE / PERSONALITY / PURPOSE ══ */}
       <Box sx={{ position: 'relative', overflow: 'hidden', py: { xs: 8, md: 14 }, backgroundColor: cream }}>
-        <CraftPaperBg />
+        <CraftPaperBg flipY={true} />
         <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 904, mx: 'auto', px: { xs: 4, md: 6 } }}>
           {[
             {
@@ -208,7 +216,6 @@ export default function AnExpressionOfSelf() {
 
       {/* ══ STATIONERY SYSTEM ══ */}
       <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 0, backgroundColor: mauve }}>
-        <CraftPaperBg opacity={0.3} />
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
             Stationery System
@@ -246,7 +253,7 @@ export default function AnExpressionOfSelf() {
 
       {/* ══ COLD CUP LABEL DESIGN ══ */}
       <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: { xs: 4, md: 6 }, backgroundColor: mauve }}>
-        <CraftPaperBg opacity={0.3} />
+
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
             Cold Cup Label Design
@@ -264,7 +271,6 @@ export default function AnExpressionOfSelf() {
 
       {/* ══ LIGHT APPAREL DESIGN ══ */}
       <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: mauve }}>
-        <CraftPaperBg opacity={0.3} />
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="center" sx={{ pt: { xs: 6, md: 8 }, px: { xs: 4, md: 6 }, mb: { xs: 3, md: 4 } }}>
             Light Apparel Design
@@ -292,7 +298,6 @@ export default function AnExpressionOfSelf() {
 
       {/* ══ FOOTER ══ */}
       <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: mauve, borderTop: '1px solid rgba(64,41,44,0.2)' }}>
-        <CraftPaperBg opacity={0.2} />
         <Box sx={{
           position: 'relative', zIndex: 1,
           display: 'flex', flexDirection: { xs: 'column', sm: 'row' },
