@@ -215,19 +215,19 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ STATIONERY SYSTEM ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 0, backgroundColor: mauve }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 15, backgroundColor: mauve }}>
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
             Stationery System
           </ItalicHeading>
           <Box sx={{ px: { xs: 0, md: '1.6%' } }}>
-            <Box component="img" src={ASSETS.stationery} alt="Brand Stationery System" sx={{ width: '100%', display: 'block' }} />
+            <Box component="img" src={ASSETS.stationery} alt="Brand Stationery System" sx={{ width: '90%', display: 'block', ml: 'auto' }} />
           </Box>
         </Box>
       </Box>
 
       {/* ══ HOT CUP DESIGN ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 0, backgroundColor: cream }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: 15, backgroundColor: cream }}>
         <CraftPaperBg />
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
@@ -252,7 +252,7 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ COLD CUP LABEL DESIGN ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: { xs: 4, md: 6 }, backgroundColor: mauve }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 8 }, pb: { xs: 4, md: 20 }, backgroundColor: mauve }}>
 
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <ItalicHeading align="right" sx={{ px: { xs: 4, md: 6, lg: 8 }, mb: { xs: 3, md: 4 } }}>
@@ -263,7 +263,7 @@ export default function AnExpressionOfSelf() {
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: { xs: 4, md: 6 }, mt: { xs: 2, md: 3 } }}>
             <Box component="img" src={ASSETS.coldCupLabelDark} alt="Cold Cup Label Dark" sx={{
-              width: { xs: '55%', sm: '40%', md: '30%' }, display: 'block',
+              width: { xs: '55%', sm: '40%', md: '30%' }, display: 'block', position: 'absolute', zIndex: 1, top: "90%", right: { xs: '5%', md: '8%' }
             }} />
           </Box>
         </Box>
@@ -297,7 +297,7 @@ export default function AnExpressionOfSelf() {
       </Box>
 
       {/* ══ FOOTER ══ */}
-      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: mauve, borderTop: '1px solid rgba(64,41,44,0.2)' }}>
+      <Box sx={{ position: 'relative', overflow: 'hidden', backgroundColor: mauve, borderTop: '1px solid rgba(64,41,44,0.2)', pt: { xs: 6, md: 10 }}}>
         <Box sx={{
           position: 'relative', zIndex: 1,
           display: 'flex', flexDirection: { xs: 'column', sm: 'row' },
