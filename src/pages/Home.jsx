@@ -49,7 +49,7 @@ export default function Home() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          pb: 8,
+          pb: 30,
           overflow: 'hidden',
         }}
       >
@@ -63,11 +63,11 @@ export default function Home() {
           aria-hidden="true"
           sx={{
             position: 'absolute',
-            top: '5%',
-            right: '-8%',
-            width: '55%',
-            opacity: 0.13,
-            transform: 'rotate(48deg)',
+            top: '10%',
+            right: '-40%',
+            width: '120%',
+            opacity: 0.08,
+            transform: 'rotate(0deg)',
             pointerEvents: 'none',
             zIndex: 1,
           }}
@@ -80,10 +80,26 @@ export default function Home() {
           sx={{
             position: 'absolute',
             top: '18%',
-            left: '-15%',
-            width: '60%',
-            opacity: 0.1,
-            transform: 'rotate(161deg)',
+            left: '-20%',
+            width: '100%',
+            opacity: 0.3,
+            transform: 'rotate(40deg)',
+            pointerEvents: 'none',
+            zIndex: 1,
+          }}
+        />
+        <Box
+          component="img"
+          src={ASSETS.rose1}
+          alt=""
+          aria-hidden="true"
+          sx={{
+            position: 'absolute',
+            top: '-40%',
+            left: '0%',
+            width: '100%',
+            opacity: 0.18,
+            transform: 'rotate(0deg)',
             pointerEvents: 'none',
             zIndex: 1,
           }}
@@ -101,7 +117,7 @@ export default function Home() {
             left: '50%',
             transform: 'translateX(-50%) rotate(-8deg)',
             width: '90%',
-            opacity: 0.18,
+            opacity: 0.5,
             pointerEvents: 'none',
             zIndex: 1,
           }}
@@ -125,27 +141,73 @@ export default function Home() {
         </Box>
 
         {/* Intro text */}
-        <Box sx={{ position: 'relative', zIndex: 2, textAlign: 'center', px: 3, maxWidth: 700 }}>
-          <Typography
-            variant="body1"
-            sx={{ fontFamily: "'Josefin Sans', sans-serif", letterSpacing: '0.08em', fontSize: '0.85rem', color: '#ae8f8e', mb: 1 }}
-          >
+        <Box sx={{ position: 'relative', 
+          zIndex: 1, 
+          px: { xs: 3, md: 6 }, 
+          pb: { xs: 6, md: 10 },
+          pt: { xs: 10, md: 30 } }}>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.35rem', sm: '1.7rem', md: '2.2rem' },
+            color: '#40292c', lineHeight: 1, mb: 0, ml: { xs: 15, md: 27 },
+          }}>
             Hello beautiful souls!
           </Typography>
-          <Typography
-            variant="h2"
-            sx={{ fontSize: { xs: '2.2rem', md: '3rem' }, mb: 2, lineHeight: 1.15 }}
-          >
-            I&rsquo;m Jasmine Lin,<br />
-            <em>aka Yi Chen Lin</em>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.35rem', sm: '1.7rem', md: '2.5rem' },
+            color: '#40292c', lineHeight: 1, mb: 0, ml: { xs: 5, md: 15 },
+          }}>
+            I&rsquo;m Jasmine Lin, aka Yi Chen Lin, a
           </Typography>
-          <Typography variant="body1" sx={{ fontSize: '1.2rem', color: '#6b4c4f' }}>
-            A creative designer turning ideas into something{' '}
-            <Box component="span" sx={{ fontStyle: 'italic', fontWeight: 600 }}>
-              meaningful and beautifully crafted.
-            </Box>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '2rem', sm: '3rem', md: '4rem', lg: '5rem' },
+            color: '#40292c', lineHeight: 0.7,
+            my: { xs: 1, md: 2 }, letterSpacing: '-0.02em',
+            ml: { xs: 10, md: 20 },
+          }}>
+            creative designer
+          </Typography>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.35rem', sm: '1.7rem', md: '2.2rem' },
+            color: '#40292c', lineHeight: 0.7, mb: 0, ml: { xs:2, md: 3 },
+          }}>
+            turning ideas into something
+          </Typography>
+          <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 300,
+            fontSize: { xs: '1.6rem', sm: '2rem', md: '2.6rem' },
+            color: '#40292c', lineHeight: 1.5, ml: { xs:7, md: 10 },
+          }}>
+            <strong sx={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontSize: { xs: '2rem', sm: '3rem', md: '4rem' }}}>
+              meaningful
+            </strong> 
+            &nbsp;and&nbsp;
+            <strong sx={{
+              fontFamily: 'Cormorant Garamond, serif',
+              fontSize: { xs: '2rem', sm: '3rem', md: '4rem' }}}>
+              beautifully
+            </strong>
+          </Typography>
+                    <Typography component="p" sx={{
+            fontFamily: 'Cormorant Garamond, serif', fontWeight: 600,
+            fontSize: { xs: '1.6rem', sm: '2rem', md: '2.6rem' },
+            color: '#40292c', lineHeight: 0.5, ml: { xs:27.5, md: 43 },
+          }}>
+            crafted.
           </Typography>
         </Box>
+
+        {/* Cursive watermark */}
+        <Box component="img" src={ASSETS.welcomeToMyWorld} alt="" aria-hidden="true" sx={{
+          position: 'absolute', bottom: '10%', left: '40%',
+          width: '100%', opacity: 0.5,
+          pointerEvents: 'none', zIndex: 0,
+        }} />
       </Box>
 
       {/* ── AN EXPRESSION OF SELF BANNER ── */}
@@ -156,7 +218,7 @@ export default function Home() {
           display: 'block',
           position: 'relative',
           overflow: 'hidden',
-          height: { xs: 260, md: 720 },
+          height: { xs: 260, sm: 480, md: 720, lg: 900},
           textDecoration: 'none',
           '&:hover .banner-overlay': { opacity: 1 },
           '&:hover .banner-text': { opacity: 1 },
@@ -171,7 +233,7 @@ export default function Home() {
           src={ASSETS.expressionOfSelfBanner}
           alt="An Expression of Self"
           onLoad={() => setBannerLoaded(true)}
-          sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }}
+          sx={{ position: 'absolute', inset: 0, width: { xs: '100%', sm: '100%', md: '100%', lg: '100%' }, height: {xs: '100%', sm: '100%', md: '100%', lg: '100%' }, objectFit: 'cover', zIndex: 1 }}
         />
         <Box
           className="banner-overlay"
