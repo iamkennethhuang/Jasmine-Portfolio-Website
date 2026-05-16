@@ -269,7 +269,7 @@ export default function AnExpressionOfSelf() {
             {/* Thumbnails stacked on left (hidden on mobile) */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', gap: 1.5 }}>
               <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail" sx={{ width: '97%', display: 'block' }} />
-              <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail 2" sx={{ width: '97%', display: 'block' }} />
+              <Box component="img" src={ASSETS.hotCoffeeCup} alt="Hot cup thumbnail 2" sx={{ width: '97%', display: 'block' }} />
             </Box>
             {/* Large photo */}
             <Box sx={{ position: 'relative', width: '100%' }}>
@@ -293,12 +293,12 @@ export default function AnExpressionOfSelf() {
           {/* Layered image area */}
           <Box sx={{ position: 'relative', px: { xs: 2, md: 0 } }}>
             {/* Dark brand card — top left, in front */}
-            <Box component="img" src={ASSETS.coldCupLabelPhoto} alt="Cold Cup Brand Card"
+            <Box component="img" src={ASSETS.darkCardFront} alt="Cold Cup Brand Card"
               sx={{
                 display: { xs: 'none', md: 'block' },
                 position: 'absolute', zIndex: 2,
-                left: '4.2%',
-                top: '-10%',
+                left: '3%',
+                top: '-15%',
                 width: '23%',
               }}
             />
@@ -309,7 +309,7 @@ export default function AnExpressionOfSelf() {
               )}
               <Box component="img" src={ASSETS.coffeeCup} alt="Cold Cup Label Design"
                 onLoad={() => markLoaded('coffeeCup')}
-                sx={{ width: '100%', display: loaded.coffeeCup ? 'block' : 'none' }} />
+                sx={{ width: '80%', display: loaded.coffeeCup ? 'block' : 'none', mx: 'auto' }} />
             </Box>
             {/* Pink label — bottom right */}
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: { xs: 4, md: '4%' }, mt: { xs: 3, md: 4 } }}>

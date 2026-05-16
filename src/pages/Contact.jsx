@@ -79,11 +79,11 @@ export default function Contact() {
 
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
               <EmailOutlinedIcon sx={{ color: '#ae8f8e' }} />
-              <Typography variant="body1">jasmine.lin@sjsu.edu</Typography>
+              <Typography variant="body1">jasmineyjl@hotmail.com</Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
               <Button
-                href="https://instagram.com"
+                href="https://www.instagram.com/whathebleep/"
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<InstagramIcon />}
@@ -97,7 +97,7 @@ export default function Contact() {
                 Instagram
               </Button>
               <Button
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/jasmine-lin-944454207/"
                 target="_blank"
                 rel="noopener noreferrer"
                 startIcon={<LinkedInIcon />}

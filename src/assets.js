@@ -1,4 +1,5 @@
 import craftPaper           from './images/craft-paper.png';
+import darkCardFront        from './images/dark-card-front.png';
 import rose1                from './images/rose1.png';
 import rose2                from './images/rose2.png';
 import cursiveJasmine       from './images/cursive-jasmine.png';
@@ -13,6 +14,7 @@ import vogueCover           from './images/vogue-cover.png';
 import billboard            from './images/billboard.png';
 import aboutMePhoto         from './images/about-me-photo.png';
 import aboutMePhotoNoBg     from './images/about-me-photo-nobg.png';
+import aboutMePhotoBgOnly   from './images/about-me-photo-bg-only.png';
 import profilePhoto         from './images/profile-photo.png';
 import chinaFlower          from './images/china-flower.png';
 import chineseChar2         from './images/chinese-char2.png';
@@ -29,6 +31,7 @@ import dscPortrait          from './images/dsc-portrait.png';
 import welcomeToMyWorld     from './images/welcome-to-my-world.png';
 import hotCoffeeCupPhoto    from './images/hot-coffee-cup-photo.png';
 import hotCupThumb          from './images/hot-cup-thumb1.png';
+import hotCoffeeCup         from './images/hot-coffee-cup.png';
 import coldCupLabelDark     from './images/cold-cup-label-dark.png';
 import coldCupLabelPhoto    from './images/cold-cup-label-photo.png';
 import lorealSlide02        from './images/loreal-slide-02.png';
@@ -65,6 +68,7 @@ import whiskasSlide06       from './images/whiskas-slide-06.png';
 
 export const ASSETS = {
   craftPaper,
+  darkCardFront,
   rose1,
   rose2,
   cursiveJasmine,
@@ -79,6 +83,7 @@ export const ASSETS = {
   billboard,
   aboutMePhoto,
   aboutMePhotoNoBg,
+  aboutMePhotoBgOnly,
   profilePhoto,
   chinaFlower,
   chineseChar2,
@@ -94,6 +99,7 @@ export const ASSETS = {
   dscPortrait,
   welcomeToMyWorld,
   hotCoffeeCupPhoto,
+  hotCoffeeCup,
   hotCupThumb,
   coldCupLabelDark,
   coldCupLabelPhoto,

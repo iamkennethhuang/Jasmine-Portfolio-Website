@@ -38,14 +38,14 @@ export default function About() {
         background: "#553B36",
         zIndex: 2,
       }}>
-        {!loaded.aboutMePhotoNoBg && (
+        {!loaded.aboutMePhoto && (
           <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 6, backgroundColor: 'rgba(255,255,255,0.08)' }} />
         )}
-        <Box component="img" src={ASSETS.aboutMePhotoNoBg} alt="Jasmine Lin"
-          onLoad={() => markLoaded('aboutMePhotoNoBg')}
+        <Box component="img" src={ASSETS.aboutMePhoto} alt="Jasmine Lin"
+          onLoad={() => markLoaded('aboutMePhoto')}
           sx={{
             position: 'absolute', right: 0, top: 0,
-            height: '100%', width: 'auto',
+            height: 'auto', width: '100%',
             zIndex: 5,
           }} />
       </Box>
@@ -140,20 +140,28 @@ export default function About() {
       <Box sx={{
         position: 'relative',
         overflow: 'hidden',
-        py: { xs: 10, md: 16 }
+        py: { xs: 10, md: 16 },
+        display: { xs: 'flex', md: 'block' },
+        flexDirection: { xs: 'column' },
+        alignItems: { xs: 'center' },
+        gap: { xs: 4 },
       }}>
         <CraftPaperBg opacity={1} flipY={true}/>
 
         {/* Chinese char — left edge */}
         <Box component="img" src={ASSETS.chineseChar3} alt="" aria-hidden="true" sx={{
-          position: 'absolute', left: 0, top: '8%',
-          height: { xs: '18%', md: '30%' },
+          position: { xs: 'relative', md: 'absolute' },
+          left: { md: 0 },
+          top: { md: '8%' },
+          height: { xs: '50%', md: '90%' },
           opacity: 1, pointerEvents: 'none', zIndex: 0,
         }} />
         {/* Chinese char — right edge */}
         <Box component="img" src={ASSETS.chineseChar2} alt="" aria-hidden="true" sx={{
-          position: 'absolute', right: 0, top: '8%',
-          height: { xs: '18%', md: '30%' },
+          position: { xs: 'relative', md: 'absolute' },
+          right: { md: 0 },
+          top: { md: '8%' },
+          height: { xs: '50%', md: '90%' },
           opacity: 1, pointerEvents: 'none', zIndex: 0,
         }} />
 

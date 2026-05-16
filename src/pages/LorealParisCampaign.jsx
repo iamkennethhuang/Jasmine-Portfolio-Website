@@ -240,7 +240,7 @@ export default function LorealParisCampaign() {
         <hr style={styles.footerDivider} />
         <div style={styles.footerLinks}>
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/whathebleep/"
             target="_blank"
             rel="noopener noreferrer"
             style={styles.footerLink}
@@ -248,7 +248,7 @@ export default function LorealParisCampaign() {
             Instagram
           </a>
           <a
-            href="https://www.linkedin.com"
+            href="https://www.linkedin.com/in/jasmine-lin-944454207/"
             target="_blank"
             rel="noopener noreferrer"
             style={styles.footerLink}

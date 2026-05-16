@@ -117,9 +117,7 @@ export default function Home() {
             onLoad={() => setHeroLoaded(true)}
             sx={{
               display: heroLoaded ? 'block' : 'none',
-              width: '100%',
-              borderRadius: 2,
-              boxShadow: '0 8px 40px rgba(64,41,44,0.18)',
+              width: '100%'
             }}
           />
         </Box>
