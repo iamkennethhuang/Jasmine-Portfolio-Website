@@ -1,4 +1,6 @@
 import { ASSETS } from '../assets';
+import Navbar from '../components/Navbar';
+import BackToTop from '../components/BackToTop';
 
 const slides = [
   ASSETS.lorealSlide03,
@@ -163,10 +165,16 @@ const styles = {
 
 export default function LorealParisCampaign() {
   return (
+    <>
+    <style>{`
+      .loreal-hero { margin-top: -64px; }
+      @media (min-width: 900px) { .loreal-hero { margin-top: -80px; } }
+    `}</style>
     <div style={styles.page}>
+      <Navbar background="transparent" />
 
       {/* ── Hero ── */}
-      <section style={styles.hero}>
+      <section style={styles.hero} className="loreal-hero">
         <img
           src={ASSETS.lorealSlide02}
           alt="L'Oréal Paris Mother's Day Campaign hero"
@@ -228,5 +236,7 @@ export default function LorealParisCampaign() {
       </footer>
 
     </div>
+    <BackToTop />
+    </>
   );
 }

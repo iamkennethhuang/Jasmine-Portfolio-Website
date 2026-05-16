@@ -1,5 +1,11 @@
 import { useRef } from 'react';
 import { ASSETS } from '../assets';
+import Navbar from '../components/Navbar';
+import BackToTop from '../components/BackToTop';
+import whiskasVideo07 from '../videos/whiskas-slide-07.mp4';
+import whiskasVideo08 from '../videos/whiskas-slide-08.mp4';
+import whiskasVideo09 from '../videos/whiskas-slide-09.mp4';
+import whiskasVideo10 from '../videos/whiskas-slide-10.mp4';
 
 // Slides in Figma vertical order (y-position ascending)
 const imageSlides = [
@@ -11,12 +17,12 @@ const imageSlides = [
   ASSETS.whiskasSlide06,
 ];
 
-// Video slides (7–10) — export these .mp4 files from Figma and place in public/videos/
+// Video slides (7–10)
 const videoSlides = [
-  '/videos/whiskas-slide-07.mp4',
-  '/videos/whiskas-slide-08.mp4',
-  '/videos/whiskas-slide-09.mp4',
-  '/videos/whiskas-slide-10.mp4',
+  whiskasVideo07,
+  whiskasVideo08,
+  whiskasVideo09,
+  whiskasVideo10,
 ];
 
 const styles = {
@@ -59,7 +65,9 @@ function VideoSlide({ src, index }) {
 
 export default function WhiskasCampaign() {
   return (
+    <>
     <div style={styles.page}>
+      <Navbar />
       {/* ── Image slides ── */}
       {imageSlides.map((src, i) => (
         <img
@@ -75,5 +83,7 @@ export default function WhiskasCampaign() {
         <VideoSlide key={i} src={src} index={i} />
       ))}
     </div>
+    <BackToTop />
+    </>
   );
 }

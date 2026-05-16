@@ -1,5 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { ASSETS } from '../assets';
+import Navbar from '../components/Navbar';
+import BackToTop from '../components/BackToTop';
 
 // ─── design tokens ────────────────────────────────────────────────
 const serif = 'Cormorant Garamond, serif';
@@ -48,7 +50,9 @@ function CraftPaperBg({ opacity = 1, flipY = false }) {
 // ─── page ─────────────────────────────────────────────────────────
 export default function AnExpressionOfSelf() {
   return (
+    <>
     <Box component="main" sx={{ position: 'relative', overflowX: 'hidden' }}>
+      <Navbar />
 
       {/* ══ HEADLINE ══ */}
       <Box sx={{ position: 'relative', zIndex: 1, overflow: 'hidden', pt: { xs: 6, sm: 8, md: 12 }, pb: { xs: 5, md: 8 } }}>
@@ -376,5 +380,7 @@ export default function AnExpressionOfSelf() {
       </Box>
 
     </Box>
+    <BackToTop />
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { ASSETS } from '../assets';
+import Navbar from '../components/Navbar';
 
 // ─── design tokens ────────────────────────────────────────────────
 const serif = 'Cormorant Garamond, serif';
@@ -31,16 +32,16 @@ export const workItems = [
 export default function Home() {
   return (
     <Box sx={{ position: 'relative', overflowX: 'hidden' }}>
+      <Navbar showLogo={false} />
       {/* ── HERO ── */}
       <Box
         sx={{
           position: 'relative',
-          minHeight: '100vh',
+          minHeight: '80vh',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          pt: 12,
           pb: 8,
           overflow: 'hidden',
         }}

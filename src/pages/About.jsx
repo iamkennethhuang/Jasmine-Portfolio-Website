@@ -1,5 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { ASSETS } from '../assets';
+import Navbar from '../components/Navbar';
+import BackToTop from '../components/BackToTop';
 
 function CraftPaperBg({ opacity = 0.45, flipY = false }) {
   return (
@@ -20,7 +22,9 @@ function CraftPaperBg({ opacity = 0.45, flipY = false }) {
 
 export default function About() {
   return (
+    <>
     <Box component="main" sx={{ overflowX: 'hidden'}}>
+      <Navbar />
 
       {/* ══ HERO ══ */}
       <Box sx={{
@@ -382,6 +386,8 @@ export default function About() {
         </Box>
       </Box>
     </Box>
+    <BackToTop />
+    </>
   );
 }
 

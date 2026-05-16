@@ -20,7 +20,6 @@ function ScrollToTop() {
   return null;
 }
 import theme from './theme';
-import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -37,7 +36,6 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <Navbar />
           <Box component="main" sx={{ flex: 1, pt: { xs: 8, md: 10 } }}>
             <Routes>
               <Route path="/" element={<Home />} />

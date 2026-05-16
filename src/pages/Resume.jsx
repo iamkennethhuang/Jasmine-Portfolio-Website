@@ -1,5 +1,7 @@
 import { Box, Typography, Divider, Grid, Paper, List, ListItem, ListItemText } from '@mui/material';
 import { ASSETS } from '../assets';
+import Navbar from '../components/Navbar';
+import BackToTop from '../components/BackToTop';
 
 function CraftPaperBg({ opacity = 0.4 }) {
   return (
@@ -44,7 +46,9 @@ const resumeSections = [
 
 export default function Resume() {
   return (
+    <>
     <Box sx={{ overflowX: 'hidden' }}>
+      <Navbar />
       {/* Header */}
       <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 14, md: 18 }, pb: { xs: 6, md: 8 }, textAlign: 'center', backgroundColor: '#f5ede8' }}>
         <CraftPaperBg />
@@ -113,5 +117,7 @@ export default function Resume() {
         </Box>
       </Box>
     </Box>
+    <BackToTop />
+    </>
   );
 }

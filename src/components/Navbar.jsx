@@ -20,10 +20,12 @@ function HideOnScroll({ children }) {
   return <Slide appear={false} direction="down" in={!trigger}>{children}</Slide>;
 }
 
-export default function Navbar() {
+export default function Navbar({ showLogo = true, background = 'craftPaper' }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [workHover, setWorkHover] = useState(false);
   const location = useLocation();
+
+  const isTransparent = background === 'transparent';
 
   return (
     <HideOnScroll>
@@ -31,9 +33,12 @@ export default function Navbar() {
         position="fixed"
         elevation={0}
         sx={{
-          backgroundColor: 'rgba(245,237,232,0.92)',
+          backgroundImage: isTransparent ? 'none' : `url(${ASSETS.craftPaper})`,
+          backgroundColor: isTransparent ? 'transparent' : undefined,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           backdropFilter: 'blur(6px)',
-          borderBottom: '1px solid rgba(64,41,44,0.12)',
+          boxShadow: isTransparent ? 'none' : undefined,
         }}
       >
         <Toolbar sx={{ justifyContent: 'space-between', minHeight: { xs: 64, md: 80 }, px: { xs: 2, md: 6 } }}>
@@ -47,7 +52,7 @@ export default function Navbar() {
                 sx={{
                   fontFamily: "'Josefin Sans', sans-serif",
                   fontWeight: 400,
-                  fontSize: '1rem',
+                  fontSize: '1.5rem',
                   letterSpacing: '0.12em',
                   color: location.pathname === link.path ? '#ae8f8e' : '#40292c',
                   borderBottom: location.pathname === link.path ? '2px solid #ae8f8e' : '2px solid transparent',
@@ -61,18 +66,20 @@ export default function Navbar() {
           </Box>
 
           {/* Center logo */}
-          <Box
-            component={Link}
-            to="/"
-            sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', position: { md: 'absolute' }, left: { md: '50%' }, transform: { md: 'translateX(-50%)' } }}
-          >
+          {showLogo && (
             <Box
-              component="img"
-              src={ASSETS.heroImage}
-              alt="Jasmine Lin Logo"
-              sx={{ height: { xs: 40, md: 52 }, width: 'auto', objectFit: 'contain' }}
-            />
-          </Box>
+              component={Link}
+              to="/"
+              sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', position: { md: 'absolute' }, left: { md: '50%' }, transform: { md: 'translateX(-50%)' } }}
+            >
+              <Box
+                component="img"
+                src={ASSETS.heroImage}
+                alt="Jasmine Lin Logo"
+                sx={{ height: { xs: 60, md: 78 }, width: 'auto', objectFit: 'contain' }}
+              />
+            </Box>
+          )}
 
           {/* Right nav links */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
@@ -90,7 +97,7 @@ export default function Navbar() {
                     sx={{
                       fontFamily: "'Josefin Sans', sans-serif",
                       fontWeight: 400,
-                      fontSize: '1rem',
+                      fontSize: '1.5rem',
                       letterSpacing: '0.12em',
                       color: location.pathname === link.path ? '#ae8f8e' : '#40292c',
                       borderBottom: location.pathname === link.path ? '2px solid #ae8f8e' : '2px solid transparent',
@@ -159,7 +166,7 @@ export default function Navbar() {
                   sx={{
                     fontFamily: "'Josefin Sans', sans-serif",
                     fontWeight: 400,
-                    fontSize: '1rem',
+                    fontSize: '1.5rem',
                     letterSpacing: '0.12em',
                     color: location.pathname === link.path ? '#ae8f8e' : '#40292c',
                     borderBottom: location.pathname === link.path ? '2px solid #ae8f8e' : '2px solid transparent',
