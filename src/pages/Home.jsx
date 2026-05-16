@@ -20,13 +20,13 @@ function CraftPaperBg({ opacity = 1, flipY = false }) {
 }
 
 export const workItems = [
-  { title: 'An Expression of Self',  subtitle: 'Brand Asset Design',     img: ASSETS.expressionOfSelfBanner, path: '/expression-of-self',      showInGrid: false },
-  { title: "L'Oréal Paris Campaign", subtitle: 'Brand Campaign Design', img: ASSETS.lorealInvitation,       path: '/loreal-paris-campaign',   showInGrid: true },
-  { title: 'Vogue Cover Mockup',      subtitle: 'Editorial Design',       img: ASSETS.vogueCover,             path: '/work',                    showInGrid: true },
-  { title: 'Stationery System',       subtitle: 'Brand Identity',          img: ASSETS.businessCard,           path: '/work',                    showInGrid: true },
-  { title: '2-Page Layout',           subtitle: 'Publication Design',      img: ASSETS.twoPageLayout,          path: '/work',                    showInGrid: true },
-  { title: 'Whiskas Campaign',        subtitle: 'Advertising Design',      img: ASSETS.whiskas,                path: '/whiskas-campaign',        showInGrid: true },
-  { title: 'Billboard Mockup',        subtitle: 'Outdoor Advertising',     img: ASSETS.billboard,              path: '/work',                    showInGrid: true },
+  { title: 'An Expression of Self',  subtitle: 'Brand Asset Design',     img: ASSETS.expressionOfSelfBanner, path: '/expression-of-self',      showInGrid: false,  hoverTitle: '',                  hoverSubtitle: '' },
+  { title: "L'Oréal Paris Campaign", subtitle: 'Brand Campaign Design', img: ASSETS.lorealInvitation,       path: '/loreal-paris-campaign',   showInGrid: true,   hoverTitle: "L'ORÉAL PARIS",     hoverSubtitle: "MOTHER'S DAY CAMPAIGN" },
+  { title: 'Vogue Cover Mockup',      subtitle: 'Editorial Design',       img: ASSETS.vogueCover,             path: '/work',                    showInGrid: true,   hoverTitle: 'VOGUE',             hoverSubtitle: 'COVER DESIGN' },
+  { title: 'Stationery System',       subtitle: 'Brand Identity',          img: ASSETS.businessCard,           path: '/work',                    showInGrid: true,   hoverTitle: 'SEPHORA',           hoverSubtitle: 'REBRAND' },
+  { title: '2-Page Layout',           subtitle: 'Publication Design',      img: ASSETS.twoPageLayout,          path: '/work',                    showInGrid: true,   hoverTitle: 'VOGUE',             hoverSubtitle: 'LAYOUT DESIGN' },
+  { title: 'Whiskas Campaign',        subtitle: 'Advertising Design',      img: ASSETS.whiskas,                path: '/whiskas-campaign',        showInGrid: true,   hoverTitle: 'WHISKAS',           hoverSubtitle: 'CAMPAIGN' },
+  { title: 'Billboard Mockup',        subtitle: 'Outdoor Advertising',     img: ASSETS.billboard,              path: '/work',                    showInGrid: true,   hoverTitle: 'CHRISTIAN LOUBOUTIN', hoverSubtitle: 'CAMPAIGN' },
 ];
 
 export default function Home() {
@@ -150,8 +150,8 @@ export default function Home() {
           overflow: 'hidden',
           height: { xs: 260, md: 420 },
           textDecoration: 'none',
-          '&:hover .banner-overlay': { opacity: 0.55 },
-          '&:hover .banner-cta': { opacity: 1, transform: 'translateY(0)' },
+          '&:hover .banner-overlay': { opacity: 1 },
+          '&:hover .banner-text': { opacity: 1 },
         }}
       >
         <Box
@@ -164,34 +164,47 @@ export default function Home() {
           className="banner-overlay"
           sx={{
             position: 'absolute', inset: 0,
-            background: 'linear-gradient(to top, rgba(64,41,44,0.7) 0%, transparent 60%)',
-            transition: 'opacity 0.4s',
+            backgroundColor: 'rgba(107,69,74,0.95)',
+            opacity: 0,
+            transition: 'opacity 0.4s ease',
           }}
         />
         <Box
+          className="banner-text"
           sx={{
-            position: 'absolute', bottom: 0, left: 0, right: 0,
-            p: { xs: 3, md: 6 },
+            position: 'absolute', inset: 0,
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            opacity: 0,
+            transition: 'opacity 0.4s ease',
           }}
         >
-          <Typography variant="overline" sx={{ color: '#e8d5c4', fontSize: '0.75rem' }}>
-            BRAND ASSET DESIGN
-          </Typography>
-          <Typography variant="h3" sx={{ color: '#fff', fontSize: { xs: '1.8rem', md: '3rem' } }}>
-            An Expression of Self
-          </Typography>
           <Typography
-            className="banner-cta"
-            variant="body2"
             sx={{
-              color: '#e8d5c4',
-              mt: 1,
-              opacity: 0,
-              transform: 'translateY(8px)',
-              transition: 'opacity 0.3s, transform 0.3s',
+              fontFamily: "'Viaoda Libre', serif",
+              fontWeight: 400,
+              color: '#fff',
+              fontSize: { xs: '1.6rem', md: '3.2rem', lg: '4rem' },
+              letterSpacing: { xs: '0.2em', md: '0.08em' },
+              textAlign: 'center',
+              lineHeight: 1.2,
+              px: 2,
             }}
           >
-            View Project →
+            AN EXPRESSION OF SELF
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "'Viaoda Libre', serif",
+              fontWeight: 400,
+              color: '#fff',
+              fontSize: { xs: '0.9rem', md: '1.4rem', lg: '1.8rem' },
+              letterSpacing: '0.22em',
+              textAlign: 'center',
+              mt: { xs: 1, md: 2 },
+            }}
+          >
+            —BRAND ASSET DESIGN—
           </Typography>
         </Box>
       </Box>
@@ -216,10 +229,11 @@ export default function Home() {
                     borderRadius: 0,
                     backgroundColor: 'transparent',
                     '&:hover .work-img': { transform: 'scale(1.04)' },
+                    '&:hover .work-hover-overlay': { opacity: 1 },
                   }}
                 >
                   <CardActionArea component={Link} to={item.path}>
-                    <Box sx={{ overflow: 'hidden', aspectRatio: '3/2' }}>
+                    <Box sx={{ overflow: 'hidden', aspectRatio: '3/2', position: 'relative' }}>
                       <CardMedia
                         className="work-img"
                         component="img"
@@ -227,6 +241,41 @@ export default function Home() {
                         alt={item.title}
                         sx={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
                       />
+                      <Box
+                        className="work-hover-overlay"
+                        sx={{
+                          position: 'absolute', inset: 0,
+                          backgroundColor: 'rgba(107,69,74,0.95)',
+                          opacity: 0,
+                          transition: 'opacity 0.4s ease',
+                          display: 'flex', flexDirection: 'column',
+                          alignItems: 'center', justifyContent: 'center',
+                          px: 2,
+                        }}
+                      >
+                        <Typography sx={{
+                          fontFamily: "'Viaoda Libre', serif",
+                          fontWeight: 400,
+                          color: '#fff',
+                          fontSize: { xs: '1.2rem', md: '1.6rem', lg: '2rem' },
+                          letterSpacing: '0.03em',
+                          textAlign: 'center',
+                          lineHeight: 1.2,
+                        }}>
+                          {item.hoverTitle}
+                        </Typography>
+                        <Typography sx={{
+                          fontFamily: "'Viaoda Libre', serif",
+                          fontWeight: 400,
+                          color: '#fff',
+                          fontSize: { xs: '0.6rem', md: '0.75rem', lg: '0.85rem' },
+                          letterSpacing: '0.22em',
+                          textAlign: 'center',
+                          mt: 1,
+                        }}>
+                          — {item.hoverSubtitle} —
+                        </Typography>
+                      </Box>
                     </Box>
                     <CardContent sx={{ px: 0, pt: 1.5, pb: '8px !important' }}>
                       <Typography variant="overline" sx={{ fontSize: '0.7rem', color: '#ae8f8e' }}>
