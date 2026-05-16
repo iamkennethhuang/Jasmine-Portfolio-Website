@@ -2,8 +2,10 @@ import { useState } from 'react';
 import {
   AppBar, Toolbar, Box, Button, IconButton, Drawer,
   List, ListItem, ListItemButton, ListItemText, useScrollTrigger, Slide, Paper, Typography,
+  Snackbar, Alert,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import { Link, useLocation } from 'react-router-dom';
 import { ASSETS } from '../assets';
 import { workItems } from '../pages/Home';
@@ -23,12 +25,14 @@ function HideOnScroll({ children }) {
 export default function Navbar({ showLogo = true, background = 'craftPaper' }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [workHover, setWorkHover] = useState(false);
+  const [devAlert, setDevAlert] = useState(false);
   const location = useLocation();
 
   const isTransparent = background === 'transparent';
 
   return (
-    <HideOnScroll>
+    <>
+      <HideOnScroll>
       <AppBar
         position="fixed"
         elevation={0}
@@ -126,8 +130,9 @@ export default function Navbar({ showLogo = true, background = 'craftPaper' }) {
                       {workItems.map((project) => (
                         <Box
                           key={project.title}
-                          component={Link}
-                          to={project.path}
+                          component={project.underDev ? 'div' : Link}
+                          {...(!project.underDev && { to: project.path })}
+                          onClick={project.underDev ? () => setDevAlert(true) : undefined}
                           sx={{
                             display: 'block',
                             px: 3, py: 1.2,
@@ -141,8 +146,12 @@ export default function Navbar({ showLogo = true, background = 'craftPaper' }) {
                             letterSpacing: '0.08em',
                             color: '#40292c',
                             lineHeight: 1.2,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 0.5,
                           }}>
                             {project.title}
+                            {project.underDev && <ConstructionIcon sx={{ fontSize: '0.85rem', color: '#ae8f8e' }} />}
                           </Typography>
                           <Typography sx={{
                             fontFamily: "'Josefin Sans', sans-serif",
@@ -215,13 +224,17 @@ export default function Navbar({ showLogo = true, background = 'craftPaper' }) {
                   {link.label === 'WORK' && workItems.map((project) => (
                     <ListItem key={project.title} disablePadding>
                       <ListItemButton
-                        component={Link}
-                        to={project.path}
-                        onClick={() => setDrawerOpen(false)}
+                        {...(!project.underDev && { component: Link, to: project.path })}
+                        onClick={() => { if (project.underDev) { setDevAlert(true); } setDrawerOpen(false); }}
                         sx={{ pl: 4 }}
                       >
                         <ListItemText
-                          primary={project.title}
+                          primary={
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              {project.title}
+                              {project.underDev && <ConstructionIcon style={{ fontSize: '0.85rem', color: '#ae8f8e' }} />}
+                            </span>
+                          }
                           secondary={project.subtitle}
                           primaryTypographyProps={{
                             fontFamily: "'Josefin Sans', sans-serif",
@@ -245,5 +258,18 @@ export default function Navbar({ showLogo = true, background = 'craftPaper' }) {
         </Drawer>
       </AppBar>
     </HideOnScroll>
+
+      <Snackbar
+        open={devAlert}
+        autoHideDuration={4000}
+        onClose={() => setDevAlert(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={() => setDevAlert(false)} severity="info" variant="filled"
+          sx={{ fontFamily: "'Josefin Sans', sans-serif", letterSpacing: '0.05em', backgroundColor: '#ae8f8e', color: '#fff', '& .MuiAlert-icon': { color: '#fff' } }}>
+          This page is currently under development. Check back soon!
+        </Alert>
+      </Snackbar>
+    </>
   );
 }

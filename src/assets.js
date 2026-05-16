@@ -4,6 +4,7 @@ import rose1                from './images/rose1.png';
 import rose2                from './images/rose2.png';
 import cursiveJasmine       from './images/cursive-jasmine.png';
 import heroImage            from './images/hero-image.png';
+import introTextNoBg        from './images/intro-text-nobg.png';
 import coffeeCup            from './images/coffee-cup.png';
 import expressionOfSelfBanner from './images/expression-of-self-banner.png';
 import lorealInvitation     from './images/loreal-invitation.png';
@@ -65,6 +66,28 @@ import whiskasSlide03       from './images/whiskas-slide-03.png';
 import whiskasSlide04       from './images/whiskas-slide-04.png';
 import whiskasSlide05       from './images/whiskas-slide-05.png';
 import whiskasSlide06       from './images/whiskas-slide-06.png';
+import sephoraBrandOverview  from './images/sephora-brand-overview.png';
+import sephoraRoseHero       from './images/sephora-rose-hero.png';
+import sephoraHeroLogo       from './images/sephora-hero-logo.png';
+import sephoraHistory1       from './images/sephora-history-1.png';
+import sephoraHistory2       from './images/sephora-history-2.png';
+import sephoraProgress       from './images/sephora-progress.png';
+import sephoraArtboard1      from './images/sephora-artboard-1.png';
+import sephoraArtboard2      from './images/sephora-artboard-2.png';
+import sephoraColors         from './images/sephora-colors.png';
+import sephoraLogo1          from './images/sephora-logo-1.png';
+import sephoraLogo2          from './images/sephora-logo-2.png';
+import sephoraLetterhead1    from './images/sephora-letterhead-1.png';
+import sephoraLetterhead2    from './images/sephora-letterhead-2.png';
+import sephoraEnvelope1      from './images/sephora-envelope-1.png';
+import sephoraEnvelope2      from './images/sephora-envelope-2.png';
+import sephoraBc1Front       from './images/sephora-bc-1-front.png';
+import sephoraBc1Back        from './images/sephora-bc-1-back.png';
+import sephoraBc2Front       from './images/sephora-bc-2-front.png';
+import sephoraBc2Back        from './images/sephora-bc-2-back.png';
+import sephoraMockupBc       from './images/sephora-mockup-bc.png';
+import sephoraMockupLetterhead from './images/sephora-mockup-letterhead.png';
+import sephoraMockupEnvelope from './images/sephora-mockup-envelope.png';
 
 export const ASSETS = {
   craftPaper,
@@ -73,6 +96,7 @@ export const ASSETS = {
   rose2,
   cursiveJasmine,
   heroImage,
+  introTextNoBg,
   coffeeCup,
   expressionOfSelfBanner,
   lorealInvitation,
@@ -134,4 +158,26 @@ export const ASSETS = {
   whiskasSlide04,
   whiskasSlide05,
   whiskasSlide06,
+  sephoraBrandOverview,
+  sephoraRoseHero,
+  sephoraHeroLogo,
+  sephoraHistory1,
+  sephoraHistory2,
+  sephoraProgress,
+  sephoraArtboard1,
+  sephoraArtboard2,
+  sephoraColors,
+  sephoraLogo1,
+  sephoraLogo2,
+  sephoraLetterhead1,
+  sephoraLetterhead2,
+  sephoraEnvelope1,
+  sephoraEnvelope2,
+  sephoraBc1Front,
+  sephoraBc1Back,
+  sephoraBc2Front,
+  sephoraBc2Back,
+  sephoraMockupBc,
+  sephoraMockupLetterhead,
+  sephoraMockupEnvelope,
 };

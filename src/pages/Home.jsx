@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Divider, Skeleton } from '@mui/material';
+import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Divider, Skeleton, Snackbar, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import { ASSETS } from '../assets';
 import Navbar from '../components/Navbar';
 
@@ -23,17 +24,18 @@ function CraftPaperBg({ opacity = 1, flipY = false }) {
 export const workItems = [
   { title: 'An Expression of Self',  subtitle: 'Brand Asset Design',     img: ASSETS.expressionOfSelfBanner, path: '/expression-of-self',      showInGrid: false,  hoverTitle: '',                  hoverSubtitle: '' },
   { title: "L'Oréal Paris Campaign", subtitle: 'Brand Campaign Design', img: ASSETS.lorealInvitation,       path: '/loreal-paris-campaign',   showInGrid: true,   hoverTitle: "L'ORÉAL PARIS",     hoverSubtitle: "MOTHER'S DAY CAMPAIGN" },
-  { title: 'Vogue Cover Mockup',      subtitle: 'Editorial Design',       img: ASSETS.vogueCover,             path: '/work',                    showInGrid: true,   hoverTitle: 'VOGUE',             hoverSubtitle: 'COVER DESIGN' },
-  { title: 'Stationery System',       subtitle: 'Brand Identity',          img: ASSETS.businessCard,           path: '/work',                    showInGrid: true,   hoverTitle: 'SEPHORA',           hoverSubtitle: 'REBRAND' },
-  { title: '2-Page Layout',           subtitle: 'Publication Design',      img: ASSETS.twoPageLayout,          path: '/work',                    showInGrid: true,   hoverTitle: 'VOGUE',             hoverSubtitle: 'LAYOUT DESIGN' },
+  { title: 'Vogue Cover Mockup',      subtitle: 'Editorial Design',       img: ASSETS.vogueCover,             path: '/work',                    showInGrid: true,   hoverTitle: 'VOGUE',             hoverSubtitle: 'COVER DESIGN',     underDev: true },
+  { title: 'Stationery System',       subtitle: 'Brand Identity',          img: ASSETS.businessCard,           path: '/sephora-rebrand',         showInGrid: true,   hoverTitle: 'SEPHORA',           hoverSubtitle: 'REBRAND' },
+  { title: '2-Page Layout',           subtitle: 'Publication Design',      img: ASSETS.twoPageLayout,          path: '/work',                    showInGrid: true,   hoverTitle: 'VOGUE',             hoverSubtitle: 'LAYOUT DESIGN',    underDev: true },
   { title: 'Whiskas Campaign',        subtitle: 'Advertising Design',      img: ASSETS.whiskas,                path: '/whiskas-campaign',        showInGrid: true,   hoverTitle: 'WHISKAS',           hoverSubtitle: 'CAMPAIGN' },
-  { title: 'Billboard Mockup',        subtitle: 'Outdoor Advertising',     img: ASSETS.billboard,              path: '/work',                    showInGrid: true,   hoverTitle: 'CHRISTIAN LOUBOUTIN', hoverSubtitle: 'CAMPAIGN' },
+  { title: 'Billboard Mockup',        subtitle: 'Outdoor Advertising',     img: ASSETS.billboard,              path: '/work',                    showInGrid: true,   hoverTitle: 'CHRISTIAN LOUBOUTIN', hoverSubtitle: 'CAMPAIGN',         underDev: true },
 ];
 
 export default function Home() {
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [bannerLoaded, setBannerLoaded] = useState(false);
   const [loadedItems, setLoadedItems] = useState({});
+  const [devAlert, setDevAlert] = useState(false);
 
   return (
     <Box sx={{ position: 'relative', overflowX: 'hidden' }}>
@@ -245,7 +247,12 @@ export default function Home() {
                     '&:hover .work-hover-overlay': { opacity: 1 },
                   }}
                 >
-                  <CardActionArea component={Link} to={item.path}>
+                  <CardActionArea
+                    {...(item.underDev
+                      ? { onClick: () => setDevAlert(true), component: 'div', sx: { cursor: 'pointer' } }
+                      : { component: Link, to: item.path }
+                    )}
+                  >
                     <Box sx={{ overflow: 'hidden', aspectRatio: '3/2', position: 'relative' }}>
                       {!loadedItems[item.title] && (
                         <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 2 }} />
@@ -298,8 +305,9 @@ export default function Home() {
                       <Typography variant="overline" sx={{ fontSize: '0.7rem', color: '#ae8f8e' }}>
                         {item.subtitle}
                       </Typography>
-                      <Typography variant="h6" sx={{ fontSize: '1.1rem', mt: 0.3 }}>
+                      <Typography variant="h6" sx={{ fontSize: '1.1rem', mt: 0.3, display: 'flex', alignItems: 'center', gap: 0.5 }}>
                         {item.title}
+                        {item.underDev && <ConstructionIcon sx={{ fontSize: '1rem', color: '#ae8f8e' }} />}
                       </Typography>
                     </CardContent>
                   </CardActionArea>
@@ -345,6 +353,18 @@ export default function Home() {
         </Box>
     </Box>
     </Box>
+
+      <Snackbar
+        open={devAlert}
+        autoHideDuration={4000}
+        onClose={() => setDevAlert(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={() => setDevAlert(false)} severity="info" variant="filled"
+          sx={{ fontFamily: "'Josefin Sans', sans-serif", letterSpacing: '0.05em', backgroundColor: '#ae8f8e', color: '#fff', '& .MuiAlert-icon': { color: '#fff' } }}>
+          This page is currently under development. Check back soon!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

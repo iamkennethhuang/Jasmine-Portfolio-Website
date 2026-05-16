@@ -1,0 +1,234 @@
+/* ── SephoraRebrand page styles ── */
+
+.sr-page {
+  font-family: 'Cormorant Garamond', serif;
+  background-color: #f5ede8;
+  color: #40292c;
+  overflow-x: hidden;
+}
+
+/* ── shared craft-paper bg ── */
+.sr-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.sr-craft-bg {
+  position: absolute;
+  top: 0;
+  left: -5%;
+  width: 110%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sr-craft-bg--flip {
+  transform: scaleY(-1);
+}
+
+.sr-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+.sr-inner--wide {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+/* ── Hero ── */
+.sr-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(5rem, 10vw, 9rem) 2rem clamp(3rem, 6vw, 5rem);
+  overflow: hidden;
+  text-align: center;
+}
+
+.sr-hero__rose {
+  position: absolute;
+  top: 5%;
+  right: -8%;
+  width: 40%;
+  opacity: 0.15;
+  transform: rotate(48deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sr-hero__logo {
+  position: relative;
+  z-index: 2;
+  width: clamp(120px, 20vw, 220px);
+  margin-bottom: 2rem;
+}
+
+.sr-hero__title {
+  position: relative;
+  z-index: 2;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 9vw, 8rem);
+  color: #40292c;
+  line-height: 1;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.sr-hero__subtitle {
+  position: relative;
+  z-index: 2;
+  font-family: 'Viaoda Libre', serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.5vw, 2.2rem);
+  color: #40292c;
+  letter-spacing: 0.22em;
+  margin: 0.6rem 0 0;
+}
+
+/* ── Band image (full-width) ── */
+.sr-band {
+  width: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.sr-band img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ── Section padding ── */
+.sr-pad-lg { padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+.sr-pad-md { padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
+.sr-pad-top { padding-top: clamp(3rem, 6vw, 5rem); }
+.sr-pad-bot { padding-bottom: clamp(3rem, 6vw, 5rem); }
+
+/* ── Typography ── */
+.sr-italic-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  color: #40292c;
+  line-height: 1;
+  margin: 0 0 clamp(1rem, 2.5vw, 2rem);
+}
+
+.sr-bold-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 7vw, 6rem);
+  color: #40292c;
+  line-height: 1;
+  margin: 0 0 clamp(1.5rem, 3vw, 3rem);
+}
+
+.sr-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.8vw, 1.6rem);
+  color: #40292c;
+  line-height: 1.65;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.sr-body:last-child { margin-bottom: 0; }
+
+/* ── Image helpers ── */
+.sr-img-full {
+  width: 100%;
+  display: block;
+}
+
+.sr-img-centered {
+  display: block;
+  margin: 0 auto;
+}
+
+/* ── Two-col grid ── */
+.sr-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.75rem, 2vw, 2rem);
+}
+
+@media (max-width: 640px) {
+  .sr-two-col { grid-template-columns: 1fr; }
+}
+
+/* ── Logo final-work layout: image left, text right on md+ ── */
+.sr-logo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+  margin-bottom: clamp(3rem, 6vw, 6rem);
+}
+
+.sr-logo-row--reverse { direction: rtl; }
+.sr-logo-row--reverse > * { direction: ltr; }
+
+@media (max-width: 768px) {
+  .sr-logo-row { grid-template-columns: 1fr; }
+  .sr-logo-row--reverse { direction: ltr; }
+}
+
+/* ── Business card 2×2 grid ── */
+.sr-bc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.5rem, 1.5vw, 1.5rem);
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+}
+
+/* ── Mauve background sections ── */
+.sr-mauve { background-color: #ae8f8e; }
+.sr-dark  { background-color: #40292c; }
+
+/* ── Progress screenshot ── */
+.sr-progress-img {
+  width: 90%;
+  margin: 0 auto clamp(2rem, 4vw, 4rem);
+  display: block;
+}
+
+/* ── Divider ── */
+.sr-divider {
+  border: none;
+  border-top: 1.5px solid #ae8f8e;
+  margin: clamp(2rem, 4vw, 4rem) 0;
+}
+
+/* ── Skeleton shimmer ── */
+@keyframes sr-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.sr-skeleton {
+  background: linear-gradient(90deg, #e8d5d0 25%, #f5ede8 50%, #e8d5d0 75%);
+  background-size: 200% 100%;
+  animation: sr-shimmer 1.6s infinite;
+  display: block;
+  width: 100%;
+}
+
+/* ── Mock-up section ── */
+.sr-mockup-stack > * + * {
+  margin-top: clamp(2rem, 4vw, 4rem);
+}
