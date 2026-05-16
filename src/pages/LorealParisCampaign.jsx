@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ASSETS } from '../assets';
 import Navbar from '../components/Navbar';
 import BackToTop from '../components/BackToTop';
@@ -164,21 +165,38 @@ const styles = {
 };
 
 export default function LorealParisCampaign() {
+  const [heroLoaded, setHeroLoaded] = useState(false);
+  const [loadedSlides, setLoadedSlides] = useState({});
+  const markSlideLoaded = (i) => setLoadedSlides(prev => ({ ...prev, [i]: true }));
+
   return (
     <>
     <style>{`
       .loreal-hero { margin-top: -64px; }
       @media (min-width: 900px) { .loreal-hero { margin-top: -80px; } }
+      @keyframes loreal-shimmer {
+        0%   { background-position: -200% 0; }
+        100% { background-position:  200% 0; }
+      }
+      .loreal-skeleton {
+        background: linear-gradient(90deg, #e8d5d0 25%, #f5ede8 50%, #e8d5d0 75%);
+        background-size: 200% 100%;
+        animation: loreal-shimmer 1.5s infinite;
+      }
     `}</style>
     <div style={styles.page}>
       <Navbar background="transparent" />
 
       {/* ── Hero ── */}
       <section style={styles.hero} className="loreal-hero">
+        {!heroLoaded && (
+          <div className="loreal-skeleton" style={{ position: 'absolute', inset: 0, zIndex: 2 }} />
+        )}
         <img
           src={ASSETS.lorealSlide02}
           alt="L'Oréal Paris Mother's Day Campaign hero"
           style={styles.heroImg}
+          onLoad={() => setHeroLoaded(true)}
         />
         <div style={styles.heroOverlay}>
           <h1 style={styles.heroTitle}>L'Oréal Paris</h1>
@@ -202,12 +220,17 @@ export default function LorealParisCampaign() {
       {/* ── Slides ── */}
       <section style={styles.slidesSection}>
         {slides.map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            alt={`Campaign slide ${i + 1}`}
-            style={styles.slideImg}
-          />
+          <div key={i} style={{ position: 'relative' }}>
+            {!loadedSlides[i] && (
+              <div className="loreal-skeleton" style={{ position: 'absolute', inset: 0 }} />
+            )}
+            <img
+              src={src}
+              alt={`Campaign slide ${i + 1}`}
+              style={styles.slideImg}
+              onLoad={() => markSlideLoaded(i)}
+            />
+          </div>
         ))}
       </section>
 

@@ -1,4 +1,5 @@
-import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Divider } from '@mui/material';
+import { useState } from 'react';
+import { Box, Typography, Grid, Card, CardActionArea, CardMedia, CardContent, Divider, Skeleton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { ASSETS } from '../assets';
 import Navbar from '../components/Navbar';
@@ -30,6 +31,10 @@ export const workItems = [
 ];
 
 export default function Home() {
+  const [heroLoaded, setHeroLoaded] = useState(false);
+  const [bannerLoaded, setBannerLoaded] = useState(false);
+  const [loadedItems, setLoadedItems] = useState({});
+
   return (
     <Box sx={{ position: 'relative', overflowX: 'hidden' }}>
       <Navbar showLogo={false} />
@@ -101,20 +106,23 @@ export default function Home() {
         />
 
         {/* Hero photo */}
-        <Box
-          component="img"
-          src={ASSETS.heroImage}
-          alt="Jasmine Lin"
-          sx={{
-            position: 'relative',
-            zIndex: 2,
-            width: { xs: '80%', sm: '50%', md: '36%' },
-            maxWidth: 520,
-            borderRadius: 2,
-            boxShadow: '0 8px 40px rgba(64,41,44,0.18)',
-            mb: 5,
-          }}
-        />
+        <Box sx={{ position: 'relative', zIndex: 2, width: { xs: '80%', sm: '50%', md: '36%' }, maxWidth: 520, mb: 5 }}>
+          {!heroLoaded && (
+            <Skeleton variant="rectangular" width="100%" sx={{ aspectRatio: '2/3', borderRadius: 2 }} />
+          )}
+          <Box
+            component="img"
+            src={ASSETS.heroImage}
+            alt="Jasmine Lin"
+            onLoad={() => setHeroLoaded(true)}
+            sx={{
+              display: heroLoaded ? 'block' : 'none',
+              width: '100%',
+              borderRadius: 2,
+              boxShadow: '0 8px 40px rgba(64,41,44,0.18)',
+            }}
+          />
+        </Box>
 
         {/* Intro text */}
         <Box sx={{ position: 'relative', zIndex: 2, textAlign: 'center', px: 3, maxWidth: 700 }}>
@@ -155,10 +163,14 @@ export default function Home() {
         }}
       >
         <CraftPaperBg flipY={true} />
+        {!bannerLoaded && (
+          <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 4 }} />
+        )}
         <Box
           component="img"
           src={ASSETS.expressionOfSelfBanner}
           alt="An Expression of Self"
+          onLoad={() => setBannerLoaded(true)}
           sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }}
         />
         <Box
@@ -237,11 +249,15 @@ export default function Home() {
                 >
                   <CardActionArea component={Link} to={item.path}>
                     <Box sx={{ overflow: 'hidden', aspectRatio: '3/2', position: 'relative' }}>
+                      {!loadedItems[item.title] && (
+                        <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 2 }} />
+                      )}
                       <CardMedia
                         className="work-img"
                         component="img"
                         image={item.img}
                         alt={item.title}
+                        onLoad={() => setLoadedItems(prev => ({ ...prev, [item.title]: true }))}
                         sx={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
                       />
                       <Box

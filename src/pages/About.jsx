@@ -1,4 +1,5 @@
-import { Box, Typography } from '@mui/material';
+import { useState } from 'react';
+import { Box, Typography, Skeleton } from '@mui/material';
 import { ASSETS } from '../assets';
 import Navbar from '../components/Navbar';
 import BackToTop from '../components/BackToTop';
@@ -21,6 +22,9 @@ function CraftPaperBg({ opacity = 0.45, flipY = false }) {
 }
 
 export default function About() {
+  const [loaded, setLoaded] = useState({});
+  const markLoaded = (key) => setLoaded(prev => ({ ...prev, [key]: true }));
+
   return (
     <>
     <Box component="main" sx={{ overflowX: 'hidden'}}>
@@ -34,11 +38,16 @@ export default function About() {
         background: "#553B36",
         zIndex: 2,
       }}>
-        <Box component="img" src={ASSETS.aboutMePhotoNoBg} alt="Jasmine Lin" sx={{
-          position: 'absolute', right: 0, top: 0,
-          height: '100%', width: 'auto',
-          zIndex: 5,
-        }} />
+        {!loaded.aboutMePhotoNoBg && (
+          <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 6, backgroundColor: 'rgba(255,255,255,0.08)' }} />
+        )}
+        <Box component="img" src={ASSETS.aboutMePhotoNoBg} alt="Jasmine Lin"
+          onLoad={() => markLoaded('aboutMePhotoNoBg')}
+          sx={{
+            position: 'absolute', right: 0, top: 0,
+            height: '100%', width: 'auto',
+            zIndex: 5,
+          }} />
       </Box>
 
       {/* ══ INTRO TEXT ══ */}
@@ -51,14 +60,25 @@ export default function About() {
         <CraftPaperBg opacity={1} />
 
         {/* Profile photo — overlaps upward into hero section */}
-        <Box component="img" src={ASSETS.profilePhoto} alt="Jasmine Lin profile" sx={{
+        <Box sx={{
           position: 'absolute',
           top: { xs: '-10%', sm: '-30%', md: '-50%' },
           left: { xs: '4%', md: '6%' },
           width: { xs: 130, sm: 190, md: 370 },
           zIndex: 10,
-          boxShadow: '0 8px 40px rgba(64,41,44,0.3)',
-        }} />
+        }}>
+          {!loaded.profilePhoto && (
+            <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '3/4', boxShadow: '0 8px 40px rgba(64,41,44,0.3)' }} />
+          )}
+          <Box component="img" src={ASSETS.profilePhoto} alt="Jasmine Lin profile"
+            onLoad={() => markLoaded('profilePhoto')}
+            sx={{
+              display: loaded.profilePhoto ? 'block' : 'none',
+              width: '100%',
+              boxShadow: '0 8px 40px rgba(64,41,44,0.3)',
+            }}
+          />
+        </Box>
 
         {/* Rose */}
         <Box component="img" src={ASSETS.rose2} alt="" aria-hidden="true" sx={{
@@ -223,15 +243,20 @@ export default function About() {
             overflow: 'hidden',
             height: { xs: 480, md: '100%' },
           }}>
-            <Box component="img" src={ASSETS.dscPortrait} alt="Jasmine Lin" sx={{
-              position: 'absolute',
-              left: { xs: 0, md: '-8%' },
-              top: 0,
-              height: '100%',
-              width: { xs: '100%', md: 'auto' },
-              objectFit: { xs: 'cover', md: 'unset' },
-              objectPosition: 'center top',
-            }} />
+            {!loaded.dscPortrait && (
+              <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 1 }} />
+            )}
+            <Box component="img" src={ASSETS.dscPortrait} alt="Jasmine Lin"
+              onLoad={() => markLoaded('dscPortrait')}
+              sx={{
+                position: 'absolute',
+                left: { xs: 0, md: '-8%' },
+                top: 0,
+                height: '100%',
+                width: { xs: '100%', md: 'auto' },
+                objectFit: { xs: 'cover', md: 'unset' },
+                objectPosition: 'center top',
+              }} />
           </Box>
 
           {/* Right: Services */}

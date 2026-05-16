@@ -6,7 +6,7 @@ import whiskasVideo07 from '../videos/whiskas-slide-07.mp4';
 import whiskasVideo08 from '../videos/whiskas-slide-08.mp4';
 import whiskasVideo09 from '../videos/whiskas-slide-09.mp4';
 import whiskasVideo10 from '../videos/whiskas-slide-10.mp4';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Skeleton } from '@mui/material';
 
 // ─── craft paper texture overlay ─────────────────────────────────
 function CraftPaperBg({ opacity = 1, flipY = false }) {
@@ -146,18 +146,23 @@ const styles = {
 
 function SlidingPair({ images, interval = 5000 }) {
   const [active, setActive] = useState(0);
+  const [firstLoaded, setFirstLoaded] = useState(false);
   useEffect(() => {
     const id = setInterval(() => setActive((prev) => (prev + 1) % images.length), interval);
     return () => clearInterval(id);
   }, [images.length, interval]);
   return (
     <div style={styles.slidingWindow}>
+      {!firstLoaded && (
+        <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 5 }} />
+      )}
       {images.map((src, i) => (
         <img
           key={i}
           src={src}
           alt={`Whiskas slide ${i + 1}`}
           style={{ ...styles.slidingImg, opacity: i === active ? 1 : 0 }}
+          onLoad={i === 0 ? () => setFirstLoaded(true) : undefined}
         />
       ))}
     </div>
@@ -229,18 +234,26 @@ function VideoSlide({ src, index }) {
 }
 
 export default function WhiskasCampaign() {
+  const [loadedSlides, setLoadedSlides] = useState({});
+  const markSlideLoaded = (i) => setLoadedSlides(prev => ({ ...prev, [i]: true }));
+
   return (
     <>
     <div style={styles.page}>
       <Navbar />
       {/* ── Image slides ── */}
       {imageSlides.map((src, i) => (
-        <img
-          key={i}
-          src={src}
-          alt={`Whiskas Campaign slide ${i + 1}`}
-          style={styles.slideImg}
-        />
+        <div key={i} style={{ position: 'relative' }}>
+          {!loadedSlides[i] && (
+            <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0 }} />
+          )}
+          <img
+            src={src}
+            alt={`Whiskas Campaign slide ${i + 1}`}
+            style={styles.slideImg}
+            onLoad={() => markSlideLoaded(i)}
+          />
+        </div>
       ))}
 
       {/* ── Sliding pair (slides 05 & 06, alternates every 5s) ── */}

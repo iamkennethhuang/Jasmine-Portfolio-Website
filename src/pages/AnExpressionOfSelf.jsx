@@ -1,4 +1,5 @@
-import { Box, Typography } from '@mui/material';
+import { useState } from 'react';
+import { Box, Typography, Skeleton } from '@mui/material';
 import { ASSETS } from '../assets';
 import Navbar from '../components/Navbar';
 import BackToTop from '../components/BackToTop';
@@ -49,6 +50,9 @@ function CraftPaperBg({ opacity = 1, flipY = false }) {
 
 // ─── page ─────────────────────────────────────────────────────────
 export default function AnExpressionOfSelf() {
+  const [loaded, setLoaded] = useState({});
+  const markLoaded = (key) => setLoaded(prev => ({ ...prev, [key]: true }));
+
   return (
     <>
     <Box component="main" sx={{ position: 'relative', overflowX: 'hidden' }}>
@@ -80,10 +84,15 @@ export default function AnExpressionOfSelf() {
       {/* ══ BANNER IMAGE ══ */}
       <Box sx={{ position: 'relative', width: '100%', height: { xs: 240, sm: 380, md: 560, lg: 700 }, overflow: 'hidden' }}>
         <CraftPaperBg opacity={1} flipY={true} />
-        <Box component="img" src={ASSETS.expressionOverview} alt="An Expression of Self" sx={{
-          position: 'relative', zIndex: 1,
-          width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block',
-        }} />
+        {!loaded.expressionOverview && (
+          <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 2 }} />
+        )}
+        <Box component="img" src={ASSETS.expressionOverview} alt="An Expression of Self"
+          onLoad={() => markLoaded('expressionOverview')}
+          sx={{
+            position: 'relative', zIndex: 1,
+            width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block',
+          }} />
       </Box>
 
       {/* ══ DESCRIPTION + HEADING ══ */}
@@ -202,9 +211,14 @@ export default function AnExpressionOfSelf() {
           {/* Logo (left, overflowing) + Description text (right) */}
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '55fr 45fr' }, alignItems: 'center' }}>
             <Box sx={{ position: 'relative', zIndex: 2, height: { xs: 320, sm: 480, md: 660, lg: 800 }, ml: { xs: 0, md: '-7%' }, transform: 'translateY(10%)' }}>
-              <Box component="img" src={ASSETS.logoOverview} alt="Logo Overview" sx={{
-                width: { xs: '100%', md: '114%' }, height: '100%', objectFit: 'cover', display: 'block', 
-              }} />
+              {!loaded.logoOverview && (
+                <Skeleton variant="rectangular" sx={{ position: 'absolute', inset: 0, zIndex: 1 }} />
+              )}
+              <Box component="img" src={ASSETS.logoOverview} alt="Logo Overview"
+                onLoad={() => markLoaded('logoOverview')}
+                sx={{
+                  width: { xs: '100%', md: '114%' }, height: '100%', objectFit: 'cover', display: 'block', 
+                }} />
             </Box>
             <Box sx={{ position: 'relative', zIndex: 1, px: { xs: 4, md: 6, lg: 8 }, py: { xs: 5, md: 8 } }}>
               <BodyText sx={{ textAlign: 'justify', fontSize: { xs: '1.2rem', md: '1.5rem', lg: '1.85rem' }, fontWeight: 700, lineHeight: 1.1 }}>
@@ -226,7 +240,14 @@ export default function AnExpressionOfSelf() {
             Stationery System
           </ItalicHeading>
           <Box sx={{ px: { xs: 0, md: '1.6%' } }}>
-            <Box component="img" src={ASSETS.stationery} alt="Brand Stationery System" sx={{ width: '90%', display: 'block', ml: 'auto' }} />
+            <Box sx={{ position: 'relative', width: '90%', ml: 'auto' }}>
+              {!loaded.stationery && (
+                <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '16/9' }} />
+              )}
+              <Box component="img" src={ASSETS.stationery} alt="Brand Stationery System"
+                onLoad={() => markLoaded('stationery')}
+                sx={{ width: '100%', display: loaded.stationery ? 'block' : 'none' }} />
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -251,7 +272,14 @@ export default function AnExpressionOfSelf() {
               <Box component="img" src={ASSETS.hotCupThumb} alt="Hot cup thumbnail 2" sx={{ width: '97%', display: 'block' }} />
             </Box>
             {/* Large photo */}
-            <Box component="img" src={ASSETS.hotCoffeeCupPhoto} alt="Hot Coffee Cup Design" sx={{ width: '100%', display: 'block' }} />
+            <Box sx={{ position: 'relative', width: '100%' }}>
+              {!loaded.hotCoffeeCupPhoto && (
+                <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '4/3' }} />
+              )}
+              <Box component="img" src={ASSETS.hotCoffeeCupPhoto} alt="Hot Coffee Cup Design"
+                onLoad={() => markLoaded('hotCoffeeCupPhoto')}
+                sx={{ width: '100%', display: loaded.hotCoffeeCupPhoto ? 'block' : 'none' }} />
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -276,8 +304,12 @@ export default function AnExpressionOfSelf() {
             />
             {/* Main cups photo — centered */}
             <Box sx={{ mx: 'auto', width: { xs: '100%', md: '83%' } }}>
-              <Box component="img" src={ASSETS.coffeeCup} alt="Cold Cup Label Design" 
-              sx={{ width: '100%', display: 'block' }} />
+              {!loaded.coffeeCup && (
+                <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '4/3' }} />
+              )}
+              <Box component="img" src={ASSETS.coffeeCup} alt="Cold Cup Label Design"
+                onLoad={() => markLoaded('coffeeCup')}
+                sx={{ width: '100%', display: loaded.coffeeCup ? 'block' : 'none' }} />
             </Box>
             {/* Pink label — bottom right */}
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: { xs: 4, md: '4%' }, mt: { xs: 3, md: 4 } }}>
@@ -305,8 +337,12 @@ export default function AnExpressionOfSelf() {
             Light Apparel Design
           </ItalicHeading>
           <Box sx={{ overflow: 'hidden' }}>
-            <Box component="img" src={ASSETS.sweatshirtBack} alt="Sweatshirt Back" 
-            sx={{ width: '100%', display: 'block' }} />
+            {!loaded.sweatshirtBack && (
+              <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '16/9' }} />
+            )}
+            <Box component="img" src={ASSETS.sweatshirtBack} alt="Sweatshirt Back"
+              onLoad={() => markLoaded('sweatshirtBack')}
+              sx={{ width: '100%', display: loaded.sweatshirtBack ? 'block' : 'none' }} />
           </Box>
           {/* Sweatshirt front — right-aligned, shifted down 10%, overlaps next section by 50% */}
           <Box sx={{
@@ -317,8 +353,14 @@ export default function AnExpressionOfSelf() {
             zIndex: 2,
             transform: 'translateY(10%)',
           }}>
-            <Box component="img" src={ASSETS.sweatshirt} alt="Sweatshirt Front"
-            sx={{ width: '70%', display: 'block' }} />
+            <Box sx={{ position: 'relative', width: '70%' }}>
+              {!loaded.sweatshirt && (
+                <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '3/4' }} />
+              )}
+              <Box component="img" src={ASSETS.sweatshirt} alt="Sweatshirt Front"
+                onLoad={() => markLoaded('sweatshirt')}
+                sx={{ width: '100%', display: loaded.sweatshirt ? 'block' : 'none' }} />
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -331,14 +373,22 @@ export default function AnExpressionOfSelf() {
             Dark Apparel Design
           </ItalicHeading>
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, pr: { xs: 7 }, gap: { xs: 2, md: 3 } }}>
-            <Box component="img" 
-            src={ASSETS.darkSweatshirtFront} 
-            alt="Dark Sweatshirt Front" 
-            sx={{ width: '100%', display: 'block' }} />
-            <Box component="img" 
-            src={ASSETS.darkSweatshirtBack} 
-            alt="Dark Sweatshirt Back" 
-            sx={{ width: '100%', display: 'block' }} />
+            <Box sx={{ position: 'relative' }}>
+              {!loaded.darkSweatshirtFront && (
+                <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '3/4' }} />
+              )}
+              <Box component="img" src={ASSETS.darkSweatshirtFront} alt="Dark Sweatshirt Front"
+                onLoad={() => markLoaded('darkSweatshirtFront')}
+                sx={{ width: '100%', display: loaded.darkSweatshirtFront ? 'block' : 'none' }} />
+            </Box>
+            <Box sx={{ position: 'relative' }}>
+              {!loaded.darkSweatshirtBack && (
+                <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '3/4' }} />
+              )}
+              <Box component="img" src={ASSETS.darkSweatshirtBack} alt="Dark Sweatshirt Back"
+                onLoad={() => markLoaded('darkSweatshirtBack')}
+                sx={{ width: '100%', display: loaded.darkSweatshirtBack ? 'block' : 'none' }} />
+            </Box>
           </Box>
         </Box>
       </Box>
