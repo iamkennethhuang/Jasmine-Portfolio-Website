@@ -148,17 +148,18 @@ export default function Home() {
           display: 'block',
           position: 'relative',
           overflow: 'hidden',
-          height: { xs: 260, md: 420 },
+          height: { xs: 260, md: 720 },
           textDecoration: 'none',
           '&:hover .banner-overlay': { opacity: 1 },
           '&:hover .banner-text': { opacity: 1 },
         }}
       >
+        <CraftPaperBg flipY={true} />
         <Box
           component="img"
           src={ASSETS.expressionOfSelfBanner}
           alt="An Expression of Self"
-          sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }}
         />
         <Box
           className="banner-overlay"
@@ -167,6 +168,7 @@ export default function Home() {
             backgroundColor: 'rgba(107,69,74,0.95)',
             opacity: 0,
             transition: 'opacity 0.4s ease',
+            zIndex: 2,
           }}
         />
         <Box
@@ -177,6 +179,7 @@ export default function Home() {
             alignItems: 'center', justifyContent: 'center',
             opacity: 0,
             transition: 'opacity 0.4s ease',
+            zIndex: 3,
           }}
         >
           <Typography

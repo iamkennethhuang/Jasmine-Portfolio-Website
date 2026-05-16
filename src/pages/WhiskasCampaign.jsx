@@ -6,6 +6,23 @@ import whiskasVideo07 from '../videos/whiskas-slide-07.mp4';
 import whiskasVideo08 from '../videos/whiskas-slide-08.mp4';
 import whiskasVideo09 from '../videos/whiskas-slide-09.mp4';
 import whiskasVideo10 from '../videos/whiskas-slide-10.mp4';
+import { Box, Typography } from '@mui/material';
+
+// ─── craft paper texture overlay ─────────────────────────────────
+function CraftPaperBg({ opacity = 1, flipY = false }) {
+  return (
+    <Box
+      component="img" src={ASSETS.craftPaper} alt="" aria-hidden="true"
+      sx={{ position: 'absolute', top: 0, left: '-5%', width: '110%', height: '100%', objectFit: 'cover', opacity, pointerEvents: 'none', zIndex: 0, transform: flipY ? 'scaleY(-1)' : 'none' }}
+    />
+  );
+}
+
+// ─── design tokens ────────────────────────────────────────────────
+const serif = 'Cormorant Garamond, serif';
+const brown = '#40292c';
+const mauve = '#ae8f8e';
+const cream = '#f5ede8';
 
 // Slides in Figma vertical order (y-position ascending)
 const imageSlides = [
@@ -236,8 +253,45 @@ export default function WhiskasCampaign() {
 
       {/* ── Manual video switcher (videos 09 & 10) ── */}
       <ManualVideoSwitcher videos={switcherVideos} />
+
+            {/* ══ FOOTER ══ */}
+      <Box sx={{ position: 'relative', overflow: 'hidden', pt: { xs: 6, md: 10 }}}>
+        <CraftPaperBg flipY={true} />
+        <Box sx={{
+          position: 'relative', zIndex: 1,
+          display: 'flex', flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: 'space-between', alignItems: 'flex-start',
+          gap: { xs: 4, sm: 0 }, px: { xs: 5, md: 8 }, py: { xs: 5, md: 6 },
+        }}>
+          <Box>
+            <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5, letterSpacing: '0.04em' }}>
+              PROJECT INQUIRIES
+            </Typography>
+            <Typography component="a" href="mailto:jasmineyjl@hotmail.com" sx={{
+              fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' },
+              color: brown, lineHeight: 1.5, display: 'block',
+              textDecoration: 'none', '&:hover': { textDecoration: 'underline' },
+            }}>
+              jasmineyjl@hotmail.com
+            </Typography>
+          </Box>
+          <Box>
+            <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5, letterSpacing: '0.04em' }}>
+              SOCIAL
+            </Typography>
+            <Typography sx={{ fontFamily: serif, fontWeight: 600, fontSize: { xs: '1rem', md: '1.25rem' }, color: brown, lineHeight: 1.5 }}>
+              <Box component="a" href="https://www.instagram.com/whathebleep/" target="_blank" rel="noopener noreferrer" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                Instagram
+              </Box>&emsp;&emsp;<Box component="a" href="https://www.linkedin.com/in/jasmine-lin-944454207/" target="_blank" rel="noopener noreferrer" sx={{ color: 'inherit', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                LinkedIn
+              </Box>
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
     </div>
     <BackToTop />
+    
     </>
   );
 }
