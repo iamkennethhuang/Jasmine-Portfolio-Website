@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ASSETS } from '../assets';
 import Navbar from '../components/Navbar';
 import BackToTop from '../components/BackToTop';
@@ -11,16 +11,23 @@ import whiskasVideo10 from '../videos/whiskas-slide-10.mp4';
 const imageSlides = [
   ASSETS.whiskasSlide01,
   ASSETS.whiskasSlide02,
-  ASSETS.whiskasSlide04, // appears at y=1845 in Figma (before slide-03)
-  ASSETS.whiskasSlide03, // appears at y=2655 in Figma (after slide-04)
+  ASSETS.whiskasSlide04,
+  ASSETS.whiskasSlide03,
+];
+
+const pairSlides = [
   ASSETS.whiskasSlide05,
   ASSETS.whiskasSlide06,
 ];
 
-// Video slides (7–10)
+// Video slides (7–8)
 const videoSlides = [
   whiskasVideo07,
   whiskasVideo08,
+];
+
+// Manual switcher videos (09 & 10)
+const switcherVideos = [
   whiskasVideo09,
   whiskasVideo10,
 ];
@@ -38,6 +45,79 @@ const styles = {
     objectFit: 'cover',
     display: 'block',
   },
+  slidingWindow: {
+    position: 'relative',
+    width: '100%',
+    aspectRatio: '16 / 9',
+    overflow: 'hidden',
+  },
+  slidingImg: {
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    display: 'block',
+    transition: 'opacity 0.8s ease',
+  },
+  switcherWrap: {
+    position: 'relative',
+    width: '100%',
+    aspectRatio: '16 / 9',
+    overflow: 'hidden',
+    backgroundColor: '#1a0a1e',
+  },
+  switcherVideo: {
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    display: 'block',
+    transition: 'opacity 0.5s ease',
+  },
+  switcherBtn: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    zIndex: 10,
+    background: 'rgba(245,237,232,0.75)',
+    border: 'none',
+    borderRadius: '50%',
+    width: '48px',
+    height: '48px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backdropFilter: 'blur(4px)',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
+    padding: 0,
+  },
+  switcherArrow: {
+    width: '10px',
+    height: '10px',
+    borderTop: '2px solid #40292c',
+    borderRight: '2px solid #40292c',
+    display: 'inline-block',
+  },
+  switcherDots: {
+    position: 'absolute',
+    bottom: '12px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    display: 'flex',
+    gap: '8px',
+    zIndex: 10,
+  },
+  dot: {
+    width: '8px',
+    height: '8px',
+    borderRadius: '50%',
+    border: '1.5px solid rgba(245,237,232,0.85)',
+    cursor: 'pointer',
+    transition: 'background 0.3s',
+  },
   slideVideo: {
     width: '100%',
     aspectRatio: '16 / 9',
@@ -46,6 +126,74 @@ const styles = {
     backgroundColor: '#1a0a1e',
   },
 };
+
+function SlidingPair({ images, interval = 5000 }) {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setActive((prev) => (prev + 1) % images.length), interval);
+    return () => clearInterval(id);
+  }, [images.length, interval]);
+  return (
+    <div style={styles.slidingWindow}>
+      {images.map((src, i) => (
+        <img
+          key={i}
+          src={src}
+          alt={`Whiskas slide ${i + 1}`}
+          style={{ ...styles.slidingImg, opacity: i === active ? 1 : 0 }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ManualVideoSwitcher({ videos }) {
+  const [active, setActive] = useState(0);
+  const prev = () => setActive((a) => (a - 1 + videos.length) % videos.length);
+  const next = () => setActive((a) => (a + 1) % videos.length);
+  return (
+    <div style={styles.switcherWrap}>
+      {videos.map((src, i) => (
+        <video
+          key={i}
+          src={src}
+          style={{ ...styles.switcherVideo, opacity: i === active ? 1 : 0 }}
+          muted
+          autoPlay
+          loop
+          playsInline
+          aria-label={`Whiskas Campaign video ${i + 9}`}
+        />
+      ))}
+
+      {/* Prev */}
+      <button style={{ ...styles.switcherBtn, left: '16px' }} onClick={prev} aria-label="Previous video">
+        <span style={{ ...styles.switcherArrow, transform: 'rotate(-135deg)', marginLeft: '3px' }} />
+      </button>
+
+      {/* Next */}
+      <button style={{ ...styles.switcherBtn, right: '16px' }} onClick={next} aria-label="Next video">
+        <span style={{ ...styles.switcherArrow, transform: 'rotate(45deg)', marginRight: '3px' }} />
+      </button>
+
+      {/* Dots */}
+      <div style={styles.switcherDots}>
+        {videos.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            aria-label={`Go to video ${i + 1}`}
+            style={{
+              ...styles.dot,
+              background: i === active ? 'rgba(245,237,232,0.9)' : 'transparent',
+              padding: 0,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function VideoSlide({ src, index }) {
   const ref = useRef(null);
@@ -78,10 +226,16 @@ export default function WhiskasCampaign() {
         />
       ))}
 
+      {/* ── Sliding pair (slides 05 & 06, alternates every 5s) ── */}
+      <SlidingPair images={pairSlides} interval={5000} />
+
       {/* ── Video slides (muted by default) ── */}
       {videoSlides.map((src, i) => (
         <VideoSlide key={i} src={src} index={i} />
       ))}
+
+      {/* ── Manual video switcher (videos 09 & 10) ── */}
+      <ManualVideoSwitcher videos={switcherVideos} />
     </div>
     <BackToTop />
     </>
