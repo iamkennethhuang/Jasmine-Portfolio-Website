@@ -56,6 +56,12 @@ import lorealSlide26        from './images/loreal-slide-26.png';
 import lorealSlide27        from './images/loreal-slide-27.png';
 import lorealSlide28        from './images/loreal-slide-28.png';
 import lorealSlide29        from './images/loreal-slide-29.png';
+import whiskasSlide01       from './images/whiskas-slide-01.png';
+import whiskasSlide02       from './images/whiskas-slide-02.png';
+import whiskasSlide03       from './images/whiskas-slide-03.png';
+import whiskasSlide04       from './images/whiskas-slide-04.png';
+import whiskasSlide05       from './images/whiskas-slide-05.png';
+import whiskasSlide06       from './images/whiskas-slide-06.png';
 
 export const ASSETS = {
   craftPaper,
@@ -116,4 +122,10 @@ export const ASSETS = {
   lorealSlide27,
   lorealSlide28,
   lorealSlide29,
+  whiskasSlide01,
+  whiskasSlide02,
+  whiskasSlide03,
+  whiskasSlide04,
+  whiskasSlide05,
+  whiskasSlide06,
 };

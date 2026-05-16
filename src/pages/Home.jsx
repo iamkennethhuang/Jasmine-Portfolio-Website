@@ -24,7 +24,7 @@ export const workItems = [
   { title: 'Vogue Cover Mockup',      subtitle: 'Editorial Design',       img: ASSETS.vogueCover,             path: '/work',                    showInGrid: true },
   { title: 'Stationery System',       subtitle: 'Brand Identity',          img: ASSETS.businessCard,           path: '/work',                    showInGrid: true },
   { title: '2-Page Layout',           subtitle: 'Publication Design',      img: ASSETS.twoPageLayout,          path: '/work',                    showInGrid: true },
-  { title: 'Whiskas Campaign',        subtitle: 'Advertising Design',      img: ASSETS.whiskas,                path: '/work',                    showInGrid: true },
+  { title: 'Whiskas Campaign',        subtitle: 'Advertising Design',      img: ASSETS.whiskas,                path: '/whiskas-campaign',        showInGrid: true },
   { title: 'Billboard Mockup',        subtitle: 'Outdoor Advertising',     img: ASSETS.billboard,              path: '/work',                    showInGrid: true },
 ];
 

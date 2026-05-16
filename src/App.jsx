@@ -26,6 +26,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import AnExpressionOfSelf from './pages/AnExpressionOfSelf';
 import LorealParisCampaign from './pages/LorealParisCampaign';
+import WhiskasCampaign from './pages/WhiskasCampaign';
 import Resume from './pages/Resume';
 import Contact from './pages/Contact';
 
@@ -43,6 +44,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/expression-of-self" element={<AnExpressionOfSelf />} />
               <Route path="/loreal-paris-campaign" element={<LorealParisCampaign />} />
+              <Route path="/whiskas-campaign" element={<WhiskasCampaign />} />
               <Route path="/resume" element={<Resume />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
